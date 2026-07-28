@@ -17,8 +17,6 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
-// Red primero: siempre intenta traer la versión más reciente de GitHub Pages.
-// Solo usa la copia guardada si no hay conexión.
 self.addEventListener('fetch', (event) => {
   const req = event.request;
   if (req.method !== 'GET') return;
