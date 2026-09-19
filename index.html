@@ -3,30 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard Interactivo - Capacitación Audio y Video</title>
+  <title>Dashboard de Capacitación - Audio y Video</title>
   <style>
     :root {
-      --bg-color: #0f172a;
-      --card-bg: #1e293b;
-      --card-hover: #334155;
-      --accent: #38bdf8;
-      --accent-hover: #0284c7;
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --border-color: #334155;
-      --success: #22c55e;
-      --warning: #f59e0b;
+      /* Paleta de colores basada en jw.org */
+      --jw-navy: #135286;
+      --jw-navy-dark: #0c3b62;
+      --jw-blue-light: #eef5fc;
+      --jw-accent: #0072ce;
+      --bg-main: #f4f6f9;
+      --card-bg: #ffffff;
+      --card-border: #cfd8e3;
+      --text-main: #1f2937;
+      --text-muted: #526071;
+      --warning: #b45309;
+      --warning-bg: #fffbe3;
+      --warning-border: #fcd34d;
+      --success: #15803d;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-family: 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
     }
 
     body {
-      background-color: var(--bg-color);
+      background-color: var(--bg-main);
       color: var(--text-main);
       display: flex;
       flex-direction: column;
@@ -34,34 +39,36 @@
       overflow: hidden;
     }
 
-    /* Header */
+    /* Encabezado Principal */
     header {
-      background-color: var(--card-bg);
-      padding: 12px 24px;
+      background-color: var(--jw-navy);
+      color: #ffffff;
+      padding: 14px 28px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid var(--border-color);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
     }
 
     header h1 {
-      font-size: 1.15rem;
-      color: var(--accent);
+      font-size: 1.25rem;
+      font-weight: 600;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
     }
 
     .slide-counter {
-      background: var(--bg-color);
-      padding: 4px 14px;
+      background: var(--jw-navy-dark);
+      color: #ffffff;
+      padding: 5px 16px;
       border-radius: 20px;
       font-size: 0.85rem;
-      border: 1px solid var(--border-color);
-      color: var(--text-muted);
+      font-weight: 500;
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
-    /* Presentation Deck */
+    /* Área de Diapositivas */
     .deck-container {
       flex: 1;
       position: relative;
@@ -78,13 +85,13 @@
       height: 100%;
       max-height: 650px;
       background-color: var(--card-bg);
-      border-radius: 12px;
-      border: 1px solid var(--border-color);
-      padding: 25px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      border-radius: 8px;
+      border: 1px solid var(--card-border);
+      padding: 28px;
+      box-shadow: var(--shadow);
       flex-direction: column;
       justify-content: space-between;
-      animation: fadeIn 0.3s ease-in-out;
+      animation: fadeIn 0.25s ease-in-out;
     }
 
     .slide.active {
@@ -92,61 +99,63 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(8px); }
+      from { opacity: 0; transform: translateY(6px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
     .slide-header {
-      margin-bottom: 15px;
+      margin-bottom: 18px;
     }
 
     .slide-title {
       font-size: 1.6rem;
-      color: var(--text-main);
-      border-bottom: 2px solid var(--accent);
+      color: var(--jw-navy);
+      border-bottom: 3px solid var(--jw-navy);
       padding-bottom: 8px;
+      font-weight: 700;
     }
 
     .slide-subtitle {
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       color: var(--text-muted);
-      margin-top: 5px;
+      margin-top: 6px;
     }
 
-    /* Grid & Interactive Cards */
+    /* Parrilla de Tarjetas Interactivas */
     .dashboard-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 18px;
       flex: 1;
       overflow-y: auto;
-      padding-right: 5px;
+      padding-right: 4px;
     }
 
     .interactive-card {
-      background: rgba(15, 23, 42, 0.7);
-      border: 1px solid var(--border-color);
-      border-radius: 10px;
-      padding: 18px;
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 20px;
       cursor: pointer;
-      transition: all 0.25s ease;
+      transition: all 0.2s ease;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      position: relative;
+      border-top: 4px solid var(--jw-navy);
     }
 
     .interactive-card:hover {
-      background: var(--card-hover);
-      border-color: var(--accent);
-      transform: translateY(-3px);
-      box-shadow: 0 6px 16px rgba(56, 189, 248, 0.15);
+      background: var(--jw-blue-light);
+      border-color: var(--jw-accent);
+      border-top-color: var(--jw-accent);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(19, 82, 134, 0.12);
     }
 
     .interactive-card h3 {
-      color: var(--accent);
+      color: var(--jw-navy);
       font-size: 1.1rem;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -154,32 +163,33 @@
 
     .interactive-card p {
       font-size: 0.9rem;
-      color: #cbd5e1;
-      line-height: 1.4;
+      color: var(--text-main);
+      line-height: 1.45;
     }
 
     .card-action {
-      margin-top: 12px;
-      font-size: 0.8rem;
-      color: var(--accent);
+      margin-top: 14px;
+      font-size: 0.85rem;
+      color: var(--jw-accent);
       font-weight: 600;
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 4px;
     }
 
-    /* Timeline Horizontal */
+    /* Línea de Tiempo */
     .timeline {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 15px;
-      gap: 10px;
+      margin-bottom: 18px;
+      gap: 12px;
     }
 
     .time-node {
-      background: rgba(15, 23, 42, 0.7);
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-top: 3px solid var(--jw-navy);
+      border-radius: 6px;
       padding: 12px;
       flex: 1;
       text-align: center;
@@ -188,33 +198,33 @@
     }
 
     .time-node:hover {
-      border-color: var(--accent);
-      background: var(--card-hover);
+      background: var(--jw-blue-light);
+      border-color: var(--jw-accent);
     }
 
     .time-node .time {
       font-weight: bold;
-      color: var(--accent);
+      color: var(--jw-navy);
       font-size: 1.1rem;
     }
 
-    /* Footer Navigation */
+    /* Pie de Página y Navegación */
     footer {
-      background-color: var(--card-bg);
-      padding: 12px 24px;
+      background-color: #ffffff;
+      padding: 12px 28px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-top: 1px solid var(--border-color);
+      border-top: 1px solid var(--card-border);
     }
 
     .btn {
-      background-color: var(--accent);
-      color: #0f172a;
+      background-color: var(--jw-navy);
+      color: #ffffff;
       border: none;
-      padding: 8px 18px;
-      border-radius: 6px;
-      font-weight: bold;
+      padding: 9px 20px;
+      border-radius: 4px;
+      font-weight: 600;
       font-size: 0.9rem;
       cursor: pointer;
       transition: background 0.2s;
@@ -224,17 +234,16 @@
     }
 
     .btn:hover {
-      background-color: var(--accent-hover);
-      color: #fff;
+      background-color: var(--jw-navy-dark);
     }
 
     .btn:disabled {
-      background-color: var(--border-color);
-      color: var(--text-muted);
+      background-color: #d1d5db;
+      color: #9ca3af;
       cursor: not-allowed;
     }
 
-    /* Modal / Detail View */
+    /* Ventana Modal (Detalles) */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -242,8 +251,8 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(15, 23, 42, 0.9);
-      backdrop-filter: blur(6px);
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(4px);
       z-index: 1000;
       justify-content: center;
       align-items: center;
@@ -252,34 +261,35 @@
 
     .modal-overlay.active {
       display: flex;
-      animation: fadeIn 0.25s ease-out;
+      animation: fadeIn 0.2s ease-out;
     }
 
     .modal-content {
-      background-color: var(--card-bg);
-      border: 1px solid var(--accent);
-      border-radius: 12px;
+      background-color: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
       width: 100%;
       max-width: 900px;
       max-height: 85vh;
       display: flex;
       flex-direction: column;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
       overflow: hidden;
     }
 
     .modal-header {
-      padding: 18px 24px;
-      background: rgba(15, 23, 42, 0.8);
-      border-bottom: 1px solid var(--border-color);
+      padding: 16px 24px;
+      background: var(--jw-navy);
+      color: #ffffff;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
     .modal-header h2 {
-      color: var(--accent);
-      font-size: 1.4rem;
+      color: #ffffff;
+      font-size: 1.3rem;
+      font-weight: 600;
     }
 
     .modal-body {
@@ -287,14 +297,14 @@
       overflow-y: auto;
       font-size: 0.95rem;
       line-height: 1.6;
-      color: #e2e8f0;
+      color: var(--text-main);
     }
 
     .modal-body h4 {
-      color: var(--accent);
-      margin: 16px 0 8px 0;
+      color: var(--jw-navy);
+      margin: 18px 0 8px 0;
       font-size: 1.1rem;
-      border-left: 3px solid var(--accent);
+      border-left: 4px solid var(--jw-navy);
       padding-left: 10px;
     }
 
@@ -303,7 +313,7 @@
     }
 
     .modal-body ul, .modal-body ol {
-      margin-left: 20px;
+      margin-left: 22px;
       margin-bottom: 16px;
     }
 
@@ -312,28 +322,30 @@
     }
 
     .info-box {
-      background: rgba(56, 189, 248, 0.1);
-      border: 1px solid var(--accent);
-      border-radius: 8px;
+      background: var(--jw-blue-light);
+      border: 1px solid #b8d5f3;
+      border-left: 4px solid var(--jw-navy);
+      border-radius: 4px;
       padding: 12px 16px;
-      margin: 15px 0;
+      margin: 16px 0;
       font-size: 0.9rem;
     }
 
     .warning-box {
-      background: rgba(245, 158, 11, 0.1);
-      border: 1px solid var(--warning);
-      border-radius: 8px;
+      background: var(--warning-bg);
+      border: 1px solid var(--warning-border);
+      border-left: 4px solid var(--warning);
+      border-radius: 4px;
       padding: 12px 16px;
-      margin: 15px 0;
+      margin: 16px 0;
       font-size: 0.9rem;
-      color: #fef3c7;
+      color: #78350f;
     }
 
     .modal-footer {
-      padding: 14px 24px;
-      background: rgba(15, 23, 42, 0.8);
-      border-top: 1px solid var(--border-color);
+      padding: 12px 24px;
+      background: #f8fafc;
+      border-top: 1px solid var(--card-border);
       display: flex;
       justify-content: flex-end;
     }
@@ -341,45 +353,45 @@
 </head>
 <body>
 
-  <!-- Header -->
+  <!-- Encabezado -->
   <header>
-    <h1>🎛️ Dashboard de Capacitación | Audio y Video</h1>
+    <h1>🎛️ Capacitación para el Personal de Audio y Video</h1>
     <div class="slide-counter" id="slideCounter">Diapositiva 1 de 6</div>
   </header>
 
-  <!-- Presentation Deck Container -->
+  <!-- Contenedor Principal -->
   <div class="deck-container">
 
-    <!-- SLIDE 1: PORTADA -->
+    <!-- DIAPOSITIVA 1 -->
     <div class="slide active">
       <div class="slide-header">
-        <h2 class="slide-title">Capacitación General del Departamento de Audio y Video</h2>
-        <p class="slide-subtitle">Haz clic en cualquiera de las tarjetas para abrir el módulo interactivo con instrucciones detalladas.</p>
+        <h2 class="slide-title">Reunión de Capacitación e Instrucciones Oficiales</h2>
+        <p class="slide-subtitle">Haz clic en cualquier tarjeta para abrir el módulo interactivo con los procedimientos explicados a detalle.</p>
       </div>
       <div class="dashboard-grid">
         <div class="interactive-card" onclick="openDetail('mod-objetivo')">
-          <h3>🎯 Objetivos de la Capacitación <span>🔍</span></h3>
-          <p>Asegurar la calidad técnica en las reuniones y aplicar estrictamente las directrices de la organización en las pautas que están en  S-178, S-261, S-260, S-179 y S-144.</p>
-          <div class="card-action">Toca para ver objetivos paso a paso →</div>
+          <h3>🎯 Objetivos de la Sesión <span>🔍</span></h3>
+          <p>Estandarizar los procedimientos técnicos basándose estrictamente en las pautas oficiales publicadas para las reuniones congregacionales.</p>
+          <div class="card-action">Ver cartas oficiales y propósitos →</div>
         </div>
         <div class="interactive-card" onclick="openDetail('mod-estructura')">
           <h3>⏱️ Estructura del Programa (60 min) <span>🔍</span></h3>
-          <p>Distribución eficiente del tiempo para cubrir llegada, equipos, configuración de software, transmisión y protocolo de videoconferencia.</p>
-          <div class="card-action">Toca para ver desglose de minutos →</div>
+          <p>Distribución eficiente del tiempo para cubrir la llegada, equipos, configuración de software, transmisión y protocolo de videoconferencia.</p>
+          <div class="card-action">Ver desglose del programa →</div>
         </div>
         <div class="interactive-card" onclick="openDetail('mod-roles')">
-          <h3>👔 Equipos y Coordinación <span>🔍</span></h3>
-          <p>Definición clara de responsabilidades para el operador de audio, operador de video y acomodador de Zoom.</p>
-          <div class="card-action">Toca para ver tareas por rol →</div>
+          <h3>👔 Funciones por Rol <span>🔍</span></h3>
+          <p>Responsabilidades específicas del operador de audio, el operador de video y el acomodador de videoconferencia.</p>
+          <div class="card-action">Ver tareas por asignación →</div>
         </div>
       </div>
     </div>
 
-    <!-- SLIDE 2: CRONOGRAMA -->
+    <!-- DIAPOSITIVA 2 -->
     <div class="slide">
       <div class="slide-header">
-        <h2 class="slide-title">1. Tiempos de Llegada y Flujo de Trabajo</h2>
-        <p class="slide-subtitle">Selecciona cada nodo de tiempo para consultar la lista de tareas específicas.</p>
+        <h2 class="slide-title">1. Cronograma y Flujo de Trabajo Antes de la Reunión</h2>
+        <p class="slide-subtitle">Selecciona cada nodo de tiempo para consultar las tareas obligatorias paso a paso.</p>
       </div>
 
       <div class="timeline">
@@ -389,7 +401,7 @@
         </div>
         <div class="time-node" onclick="openDetail('time-25')">
           <div class="time">-25 min</div>
-          <p style="font-size: 0.8rem; margin-top: 4px;">Pruebas Virtuales</p>
+          <p style="font-size: 0.8rem; margin-top: 4px;">Pruebas de Zoom</p>
         </div>
         <div class="time-node" onclick="openDetail('time-15')">
           <div class="time">-15 min</div>
@@ -408,115 +420,117 @@
       <div class="dashboard-grid">
         <div class="interactive-card" onclick="openDetail('detail-preparacion-previa')">
           <h3>📋 Protocolo de Preparación Previa <span>🔍</span></h3>
-          <p>Verificación de archivos descargados, comprobación del canal de audio principal y desinfección de micrófonos inalámbricos.</p>
+          <p>Verificación de archivos multimedia descargados, comprobación de canales de sonido y desinfección de micrófonos inalámbricos.</p>
           <div class="card-action">Ver instrucciones completas →</div>
         </div>
         <div class="interactive-card" onclick="openDetail('detail-post-reunion')">
           <h3>🚪 Protocolo Posterior a la Reunión <span>🔍</span></h3>
-          <p>Acciones obligatorias al finalizar la oración final: desconexión de cámaras del salón, ventana de convivencia y Wi-Fi.</p>
+          <p>Acciones al terminar la oración: apagar la cámara de la plataforma, gestionar la ventana de convivencia y apagado seguro.</p>
           <div class="card-action">Ver instrucciones completas →</div>
         </div>
       </div>
     </div>
 
-    <!-- SLIDE 3: EQUIPOS Y RED -->
+    <!-- DIAPOSITIVA 3 -->
     <div class="slide">
       <div class="slide-header">
-        <h2 class="slide-title">2. Configuración de Equipos Físicos y Red</h2>
-        <p class="slide-subtitle">Toca cada componente para ver especificaciones técnicas de cableado y montaje.</p>
+        <h2 class="slide-title">2. Configuración Física y de Red</h2>
+        <p class="slide-subtitle">Consulta los requerimientos técnicos descritos en las instrucciones oficiales.</p>
       </div>
       <div class="dashboard-grid">
         <div class="interactive-card" onclick="openDetail('eq-red')">
-          <h3>🌐 Conexión a Red e Internet <span>🔍</span></h3>
-          <p>Prioridad de conexión cableada por Ethernet, gestión de ancho de banda y restricciones en el uso de Wi-Fi.</p>
+          <h3>🌐 Conexión a Internet y Red <span>🔍</span></h3>
+          <p>Uso obligatorio de cable Ethernet, gestión de ancho de banda y restricciones en el uso del Wi-Fi del auditorio.</p>
           <div class="card-action">Ver detalles de red →</div>
         </div>
         <div class="interactive-card" onclick="openDetail('eq-camara')">
-          <h3>🎥 Cámara de la Plataforma <span>🔍</span></h3>
-          <p>Ubicación, tipo de encuadre amplio y directrices estrictas sobre lo que NUNCA debe mostrarse en pantalla.</p>
+          <h3>🎥 Cámara del Salón del Reino <span>🔍</span></h3>
+          <p>Ubicación, encuadre de la plataforma y restricciones sobre la privacidad de los asistentes.</p>
           <div class="card-action">Ver directrices de cámara →</div>
         </div>
         <div class="interactive-card" onclick="openDetail('eq-audio-pantallas')">
-          <h3>🎛️ Mezclador de Audio y Pantallas <span>🔍</span></h3>
-          <p>Conexión entre consola y PC, configuración de monitores extendidos y medidas para prevenir acoples.</p>
-          <div class="card-action">Ver mapa de conexiones →</div>
+          <h3>🎛️ Consola de Audio y Pantallas <span>🔍</span></h3>
+          <p>Conexiones físicas, configuración de monitores extendidos en Windows y medidas para evitar acoples de audio.</p>
+          <div class="card-action">Ver conexiones y audio →</div>
         </div>
       </div>
     </div>
 
-    <!-- SLIDE 4: MULTIMEDIA Y ZOOM -->
+    <!-- DIAPOSITIVA 4 -->
     <div class="slide">
       <div class="slide-header">
         <h2 class="slide-title">3. Transmisión Multimedia y Ajustes de Zoom</h2>
-        <p class="slide-subtitle">Haz clic para revisar las opciones paso a paso del software de transmisión.</p>
+        <p class="slide-subtitle">Selecciona los módulos para revisar la configuración del software.</p>
       </div>
       <div class="dashboard-grid">
         <div class="interactive-card" onclick="openDetail('sw-video-res')">
           <h3>🎬 Reproducción de Video y Calidad <span>🔍</span></h3>
-          <p>Criterios para elegir entre 720p y 480p, configuración de JW Library y listas de reproducción secundarias en VLC.</p>
-          <div class="card-action">Ver guía de reproducción →</div>
+          <p>Resoluciones recomendadas (720p), configuración de JW Library y listas de reproducción secundarias.</p>
+          <div class="card-action">Ver guía de video →</div>
         </div>
         <div class="interactive-card" onclick="openDetail('sw-zoom-settings')">
           <h3>⚙️ Ajustes Internos de Zoom <span>🔍</span></h3>
-          <p>Configuración del panel de Audio, Supresión de Ruido, Modo de dos monitores y Compartición con audio optimizado.</p>
-          <div class="card-action">Ver pantalla por pantalla de Zoom →</div>
+          <p>Configuración de audio, supresión de ruido, uso de dos monitores y compartición con sonido optimizado.</p>
+          <div class="card-action">Ver pantalla por pantalla →</div>
         </div>
         <div class="interactive-card" onclick="openDetail('sw-musica')">
           <h3>🎵 Control de Música de Fondo <span>🔍</span></h3>
-          <p>Uso correcto de pistas de audio para proyectar el Texto del Año sin interrupciones visuales antes y después del programa.</p>
+          <p>Uso de pistas de audio para proyectar el Texto del Año en pantallas sin interrupciones de reproductor de video.</p>
           <div class="card-action">Ver procedimiento de audio →</div>
         </div>
       </div>
     </div>
 
-    <!-- SLIDE 5: PAUTAS VISUALES S-178 -->
+    <!-- DIAPOSITIVA 5 -->
     <div class="slide">
-      <h2 class="slide-title">4. Participación por Zoom y Pautas Visuales (S-178)</h2>
-      <p class="slide-subtitle">Selecciona los módulos para instruir correctamente a los participantes virtuales.</p>
+      <div class="slide-header">
+        <h2 class="slide-title">4. Participación por Videoconferencia y Pautas Visuales</h2>
+        <p class="slide-subtitle">Líneas de acción basadas en las instrucciones oficializadas para reuniones virtuales.</p>
+      </div>
       <div class="dashboard-grid">
         <div class="interactive-card" onclick="openDetail('s178-encuadre')">
           <h3>📐 Encuadre e Iluminación del Orador <span>🔍</span></h3>
-          <p>Posición de la cámara a la altura de los ojos, iluminación de frente, distancia del micrófono (3-5 cm) y fondos neutros.</p>
-          <div class="card-action">Ver pautas de la carta S-178 →</div>
+          <p>Cámara horizontal a la altura de los ojos, iluminación frontal, posición del micrófono (3-5 cm) y fondos limpios.</p>
+          <div class="card-action">Ver pautas de la Carta S-178 →</div>
         </div>
         <div class="interactive-card" onclick="openDetail('s178-participaciones')">
-          <h3>🎭 Tipos de Partes y Reglas <span>🔍</span></h3>
-          <p>Cuándo destacar video, normas para asignaciones dobles (demostraciones) y transmisión de comentarios del público.</p>
+          <h3>🎭 Tipos de Partes y Transmisión <span>🔍</span></h3>
+          <p>Criterios para destacar video, asignaciones dobles (demostraciones) y comentarios de la audiencia.</p>
           <div class="card-action">Ver reglas de transmisión →</div>
         </div>
         <div class="interactive-card" onclick="openDetail('s178-acomodador')">
           <h3>🛡️ Funciones del Acomodador de Zoom <span>🔍</span></h3>
-          <p>Gestión de Sala de Espera, conteo de asistencia, atención a salas reducidas y expulsión de personas distractoras.</p>
+          <p>Gestión de Sala de Espera, conteo de asistencia, salas reducidas y protocolo ante interrupciones.</p>
           <div class="card-action">Ver tareas del acomodador →</div>
         </div>
       </div>
     </div>
 
-    <!-- SLIDE 6: CHECKLIST Y GUÍA -->
+    <!-- DIAPOSITIVA 6 -->
     <div class="slide">
       <div class="slide-header">
         <h2 class="slide-title">5. Lista de Verificación en la Mesa de Control</h2>
-        <p class="slide-subtitle">Usa este tablero de prueba durante la capacitación. Haz clic en las casillas para ver la explicación.</p>
+        <p class="slide-subtitle">Guía rápida de control técnico para el operador durante el turno.</p>
       </div>
       <div class="dashboard-grid">
         <div class="interactive-card" onclick="openDetail('check-30min')">
-          <h3>✅ Check 1: 30 minutos antes <span>🔍</span></h3>
-          <p>Computadora encendida, Ethernet activo, salida asignada a la consola, JW Library y Zoom abiertos.</p>
+          <h3>✅ Check 1: -30 Minutos <span>🔍</span></h3>
+          <p>PC encendida, cable Ethernet verificado, salida asignada a la consola, JW Library y Zoom iniciados.</p>
           <div class="card-action">Ver detalle →</div>
         </div>
         <div class="interactive-card" onclick="openDetail('check-25min')">
-          <h3>✅ Check 2: 25 minutos antes <span>🔍</span></h3>
-          <p>Pruebas con oradores y lectores de Zoom completadas. Encuadre, iluminación y micrófono verificados.</p>
+          <h3>✅ Check 2: -25 Minutos <span>🔍</span></h3>
+          <p>Pruebas realizadas con oradores y lectores virtuales. Encuadre, luz y micrófono verificados.</p>
           <div class="card-action">Ver detalle →</div>
         </div>
         <div class="interactive-card" onclick="openDetail('check-1min')">
-          <h3>✅ Check 3: 1 minuto antes <span>🔍</span></h3>
-          <p>Silenciar a todos los participantes en Zoom. Desmarcar opción de reactivación de micrófono. Anuncio del presidente.</p>
+          <h3>✅ Check 3: -1 Minuto <span>🔍</span></h3>
+          <p>Silenciar a todos en Zoom. Desmarcar la casilla que permite reactivar el micrófono. Anuncio inicial.</p>
           <div class="card-action">Ver detalle →</div>
         </div>
         <div class="interactive-card" onclick="openDetail('check-durante')">
-          <h3>✅ Check 4: Durante la reunión <span>🔍</span></h3>
-          <p>Destacar video solo de oradores principales. Comentarios de la audiencia en Zoom pasan solo en formato de AUDIO.</p>
+          <h3>✅ Check 4: Durante la Reunión <span>🔍</span></h3>
+          <p>Destacar video solo de discursos. Los comentarios del público por Zoom pasan solo en formato de AUDIO.</p>
           <div class="card-action">Ver detalle →</div>
         </div>
       </div>
@@ -524,7 +538,7 @@
 
   </div>
 
-  <!-- Modal / Sub-Screen View -->
+  <!-- Vista Modal (Pantalla de Detalle) -->
   <div class="modal-overlay" id="detailModal">
     <div class="modal-content">
       <div class="modal-header">
@@ -532,7 +546,7 @@
         <button class="btn" onclick="closeDetail()">⬅️ Volver a la presentación</button>
       </div>
       <div class="modal-body" id="modalBody">
-        <!-- Content inserted dynamically -->
+        <!-- El contenido se genera dinámicamente -->
       </div>
       <div class="modal-footer">
         <button class="btn" onclick="closeDetail()">⬅️ Volver a la presentación</button>
@@ -540,15 +554,14 @@
     </div>
   </div>
 
-  <!-- Navigation Controls Footer -->
+  <!-- Pie de Navegación -->
   <footer>
     <button class="btn" id="prevBtn" onclick="changeSlide(-1)" disabled>Anterior</button>
-    <div style="color: var(--text-muted); font-size: 0.85rem;">Usa las flechas del teclado ⬅️ ➡️ para cambiar de diapositiva</div>
+    <div style="color: var(--text-muted); font-size: 0.85rem;">Navega usando los botones o las flechas del teclado ⬅️ ➡️</div>
     <button class="btn" id="nextBtn" onclick="changeSlide(1)">Siguiente</button>
   </footer>
 
   <script>
-    // State management
     let currentSlide = 0;
     const slides = document.querySelectorAll('.slide');
     const slideCounter = document.getElementById('slideCounter');
@@ -571,276 +584,272 @@
       updateSlide();
     }
 
-    // Modal Details Dictionary
+    // Diccionario de datos con nombres exactos de las Cartas Oficiales
     const detailData = {
       'mod-objetivo': {
-        title: '🎯 Objetivos Clave de la Capacitación',
+        title: '🎯 Objetivos Clave y Cartas de Referencia',
         html: `
           <h4>Propósito Fundamental</h4>
-          <p>Capacitar al personal asignado al departamento de Audio y Video para brindar un soporte técnico fluido, respetuoso y profesional que permita mantener la dignidad en las reuniones congregacionales.</p>
+          <p>Capacitar al personal asignado para brindar un soporte técnico fluido, respetuoso y profesional que contribuya al orden y dignidad de las reuniones congregacionales.</p>
           
-          <h4>Documentos Oficiales de Referencia</h4>
+          <h4>Documentos y Cartas Oficiales Aplicadas</h4>
           <ul>
-            <li><b>S-178:</b> Instrucciones para las reuniones transmitidas por videoconferencia.</li>
-            <li><b>S-261:</b> Guía para el equipo de audio y video del Salón del Reino.</li>
-            <li><b>S-260:</b> Recomendaciones para el uso de programas de videoconferencia.</li>
-            <li><b>S-179:</b> Pautas sobre la proyección de imágenes y videos.</li>
-            <li><b>S-144:</b> Seguridad y control en la transmisión de reuniones.</li>
+            <li><b>Carta S-178:</b> <i>Instrucciones para las reuniones de la congregación transmitidas por videoconferencia</i>.</li>
+            <li><b>Carta S-261:</b> <i>Instrucciones para los operadores del equipo de audio y video del Salón del Reino</i>.</li>
+            <li><b>Carta S-260:</b> <i>Instrucciones para el uso de programas de videoconferencia</i>.</li>
+            <li><b>Carta S-179:</b> <i>Instrucciones para la reproducción de imágenes y videos en las reuniones de congregación</i>.</li>
+            <li><b>Carta S-144:</b> <i>Instrucciones para los acomodadores y la seguridad en las reuniones</i>.</li>
           </ul>
 
           <div class="info-box">
-            <b>Nota:</b> Todo hermano que opera la consola de audio o el sistema de transmisión debe conocer estas pautas antes de asumir el turno.
+            <b>Nota:</b> Todo hermano que atienda la consola de sonido, la computadora o la videoconferencia debe repasar periódicamente estas instrucciones oficiales.
           </div>
         `
       },
       'mod-estructura': {
-        title: '⏱️ Desglose Detallado del Programa (60 Minutos)',
+        title: '⏱️ Desglose del Programa (60 Minutos)',
         html: `
-          <h4>Planificación Minuto a Minuto</h4>
+          <h4>Estructura de la Capacitación</h4>
           <ol>
-            <li><b>00 - 05 min: Introducción y Propósito:</b> Bienvenida, oración breve de inicio y resumen de temas.</li>
-            <li><b>05 - 15 min: Módulo 1 (Cronograma):</b> Explicación paso a paso de los tiempos de preparación previa y cierre.</li>
-            <li><b>15 - 25 min: Módulo 2 (Hardware y Red):</b> Conexiones físicas, red Ethernet, consola analógica/USB y cámaras.</li>
-            <li><b>25 - 35 min: Módulo 3 (Software):</b> Configuración interna de Zoom, Windows (pantallas extendidas) y JW Library.</li>
-            <li><b>35 - 45 min: Módulo 4 (Multimedia):</b> Transmisión de videos, resoluciones recomendadas y música de fondo.</li>
-            <li><b>45 - 55 min: Módulo 5 (Protocolo Zoom - S-178):</b> Directrices visuales, encuadre de oradores y asignaciones dobles.</li>
-            <li><b>55 - 60 min: Cierre y Preguntas:</b> Sesión de dudas, distribución del rol mensual y oración final.</li>
+            <li><b>00 - 05 min | Introducción:</b> Propósito de la capacitación y presentación de las cartas de instrucción.</li>
+            <li><b>05 - 15 min | Cronograma de Trabajo:</b> Tiempos de preparación previos a la reunión y procedimiento de cierre.</li>
+            <li><b>15 - 25 min | Equipos Físicos y Red:</b> Conexión Ethernet, mesa de mezclas, micrófonos y cámaras según la Carta S-261.</li>
+            <li><b>25 - 35 min | Ajustes de Software:</b> Configuración de Zoom, monitores extendidos en Windows y JW Library según las Cartas S-260 y S-179.</li>
+            <li><b>35 - 45 min | Transmisión Multimedia:</b> Calidad de video (720p), reproducción con audio optimizado y música de fondo.</li>
+            <li><b>45 - 55 min | Protocolo de Videoconferencia:</b> Encuadre de oradores, asignaciones dobles y acomodación virtual conforme a la Carta S-178.</li>
+            <li><b>55 - 60 min | Conclusión:</b> Preguntas, asignación del rol de trabajo y oración final.</li>
           </ol>
         `
       },
       'mod-roles': {
-        title: '👔 Roles y Funciones del Departamento',
+        title: '👔 Funciones por Rol en el Departamento',
         html: `
-          <h4>1. Operador de Audio</h4>
+          <h4>1. Operador de Audio (Carta S-261)</h4>
           <ul>
-            <li>Controlar los niveles de volumen en la consola de mezclas.</li>
-            <li>Entregar y desinfectar los micrófonos inalámbricos del salón.</li>
-            <li>Verificar la carga de las baterías de los micrófonos antes del inicio.</li>
+            <li>Regular los niveles de volumen en la consola de mezclas para que el sonido sea claro y uniforme en todo el auditorio.</li>
+            <li>Gestionar los micrófonos inalámbricos de la plataforma y del público.</li>
+            <li>Desinfectar las rejillas de los micrófonos antes y después de cada reunión.</li>
           </ul>
 
-          <h4>2. Operador de Video y Sistema</h4>
+          <h4>2. Operador de Video y Sistema (Carta S-179)</h4>
           <ul>
             <li>Manejar la computadora principal (JW Library, Zoom y VLC).</li>
-            <li>Proyectar los videos en el momento indicado por el presidente o conductor.</li>
-            <li>Destacar la imagen del orador correspondiente en Zoom.</li>
+            <li>Proyectar los videos en las pantallas del Salón del Reino exactamente cuando el orador o conductor los introduzca.</li>
+            <li>Destacar la imagen del orador que corresponda en la plataforma o en Zoom.</li>
           </ul>
 
-          <h4>3. Acomodador de Videoconferencia (Zoom)</h4>
+          <h4>3. Acomodador de Videoconferencia (Carta S-178 y Carta S-144)</h4>
           <ul>
-            <li>Gestionar la Sala de Espera admitiendo solo a miembros reconocidos.</li>
-            <li>Tomar el conteo exacto de la asistencia virtual.</li>
-            <li>Silenciar micrófonos abiertos accidentalmente o responder al chat técnico.</li>
+            <li>Admitir en la Sala de Espera únicamente a miembros de la congregación u oradores invitados.</li>
+            <li>Llevar el conteo de la asistencia virtual.</li>
+            <li>Silenciar micrófonos abiertos por error o atender aspectos técnicos en el chat.</li>
           </ul>
         `
       },
       'time-30': {
-        title: '⏰ Tareas a los 30 Minutos Antes (-30 min)',
+        title: '⏰ Tareas a 30 Minutos Antes del Inicio (-30 min)',
         html: `
-          <h4>Acciones Inmediatas al Llegar</h4>
+          <h4>Arribo y Encendido de Equipos</h4>
           <ol>
-            <li>Encender la computadora principal y la consola de mezcla.</li>
-            <li>Comprobar que el cable Ethernet esté conectado firmemente (desactivar Wi-Fi si es necesario).</li>
-            <li>Abrir los programas requeridos: <b>JW Library</b>, <b>VLC Media Player</b> y <b>Zoom</b>.</li>
-            <li>Verificar que la salida de audio por defecto de Windows esté enviando la señal al mezclador.</li>
+            <li>Encender la computadora principal, amplificadores y la consola de mezcla.</li>
+            <li>Comprobar que la conexión a Internet sea por cable Ethernet directo (desactivar Wi-Fi en el equipo principal si aplica).</li>
+            <li>Iniciar los programas de trabajo: <b>JW Library</b>, <b>VLC Media Player</b> y <b>Zoom</b>.</li>
+            <li>Verificar en Windows que la salida de audio por defecto esté enviando la señal a la consola de mezclas.</li>
           </ol>
           <div class="warning-box">
-            <b>¡Importante!</b> Nunca esperes a los últimos 10 minutos para encender los equipos; la actualización de aplicaciones o el reinicio de Windows puede demorar el inicio.
+            <b>Atención:</b> Evita encender los equipos a última hora para prevenir retrasos por actualizaciones automáticas del sistema.
           </div>
         `
       },
       'time-25': {
-        title: '⏰ Tareas a los 25 Minutos Antes (-25 min)',
+        title: '⏰ Tareas a 25 Minutos Antes del Inicio (-25 min)',
         html: `
-          <h4>Pruebas Técnicas con Participantes Virtuales</h4>
+          <h4>Verificación con Participantes Virtuales (Carta S-178)</h4>
           <ul>
-            <li>Admitir en Zoom a los hermanos que tienen asignación o lectura desde sus hogares.</li>
-            <li><b>Prueba de Audio:</b> Solicitar al participante que hable para verificar volumen y nitidez.</li>
-            <li><b>Prueba de Video:</b> Verificar que el encuadre sea horizontal, a la altura de los ojos y con luz adecuada de frente.</li>
-            <li>Confirmar que los participantes sepan cómo activar y desactivar su propio micrófono.</li>
+            <li>Admitir en Zoom a los oradores y lectores que participan desde sus hogares.</li>
+            <li><b>Prueba de Sonido:</b> Comprobar que la señal de voz del orador se escuche limpia y con suficiente volumen.</li>
+            <li><b>Prueba de Imagen:</b> Confirmar que la cámara esté horizontal, fija, bien iluminada de frente y a la altura de los ojos.</li>
+            <li>Recordar al participante cómo activar y desactivar su micrófono cuando el conductor le dé la palabra.</li>
           </ul>
         `
       },
       'time-15': {
-        title: '⏰ Tareas a los 15 Minutos Antes (-15 min)',
+        title: '⏰ Tareas a 15 Minutos Antes del Inicio (-15 min)',
         html: `
-          <h4>Música de Fondo y Proyección en Auditorio</h4>
+          <h4>Música de Fondo e Imagen del Salón (Carta S-179)</h4>
           <ul>
-            <li>Iniciar la reproducción de audio de <i>Cantemos con gozo a Jehová</i> en modo aleatorio.</li>
-            <li>Proyectar en las pantallas del Salón del Reino la imagen oficial del <b>Texto del Año</b>.</li>
-            <li>Verificar que el audio de la música llegue con un volumen suave y agradable tanto al salón como a los participantes de Zoom.</li>
+            <li>Iniciar la reproducción de pistas de audio de <i>Cantemos con gozo a Jehová</i> en modo aleatorio.</li>
+            <li>Proyectar en las pantallas del Salón del Reino la imagen del <b>Texto del Año</b>.</li>
+            <li>Ajustar el volumen de la música para que sea un fondo agradable en el salón y a través de Zoom.</li>
           </ul>
         `
       },
       'time-1': {
         title: '⏰ Tareas a 1 Minuto del Inicio (-1 min)',
         html: `
-          <h4>Bloqueo de Audio y Anuncio Inicial</h4>
+          <h4>Ajuste Final de Zoom y Silenciamiento</h4>
           <ol>
-            <li>Detener gradualmente la música de fondo.</li>
-            <li>En Zoom, seleccionar <b>"Silenciar a todos"</b>.</li>
-            <li><b>Paso Crucial:</b> Desmarcar la casilla <i>"Permitir que los participantes reactiven su propio micrófono"</i> para evitar interrupciones.</li>
-            <li>Dar paso al anuncio del Presidente de la Reunión.</li>
+            <li>Desvanecer gradualmente la música de fondo hasta detenerla.</li>
+            <li>En Zoom, hacer clic en <b>"Silenciar a todos"</b>.</li>
+            <li><b>Paso Fundamental:</b> Desmarcar la casilla <i>"Permitir que los participantes reactiven su propio micrófono"</i> conforme a la Carta S-178.</li>
+            <li>Dar paso a las palabras de bienvenida del Presidente de la Reunión.</li>
           </ol>
         `
       },
       'time-cierre': {
-        title: '⏰ Protocolo al Finalizar la Reunión',
+        title: '⏰ Cierre de la Reunión',
         html: `
-          <h4>Cierre Gradual y Convivencia</h4>
+          <h4>Procedimiento de Desconexión</h4>
           <ol>
-            <li>Inmediatamente después de la oración final, <b>desactivar la cámara que enfoca la plataforma del salón</b> en Zoom.</li>
-            <li>Mantener abierta la videoconferencia de Zoom durante el tiempo dispuesto por los ancianos para que los hermanos puedan saludarse.</li>
-            <li>Restablecer la red Wi-Fi si fue desactivada o limitada durante la reunión.</li>
-            <li>Apagar ordenadamente amplificadores, consolas y computadoras. Guardar micrófonos en sus fundas.</li>
+            <li>Al finalizar la oración de conclusión, <b>desactivar inmediatamente la cámara que enfoca la plataforma del salón</b> en Zoom.</li>
+            <li>Mantener abierta la sala de Zoom el tiempo dispuesto por el cuerpo de ancianos para permitir la convivencia entre los hermanos.</li>
+            <li>Apagar en orden los equipos: primero amplificadores de sonido, luego la consola y finalmente la computadora. Guardar los micrófonos en sus estuches.</li>
           </ol>
         `
       },
       'detail-preparacion-previa': {
         title: '📋 Protocolo de Preparación Previa',
         html: `
-          <h4>Verificación del Material de la Reunión</h4>
+          <h4>Verificación de Materiales Multimedia (Carta S-179)</h4>
           <ul>
-            <li><b>Descarga en JW Library:</b> Confirmar que todos los videos de la reunión de entre semana (Vida y Ministerio) o de fin de semana estén descargados en la PC en calidad HD (720p).</li>
-            <li><b>Comprobación de Micrófonos Físicos:</b> Probar cada micrófono de pedestal y de mano inalámbrico en el salón antes de que comience a entrar el público.</li>
-            <li><b>Limpieza:</b> Desinfectar las rejillas de los micrófonos antes de cada uso.</li>
+            <li><b>Descarga en JW Library:</b> Asegurarse de que todos los videos de la reunión estén descargados con anticipación en la PC en calidad HD (720p).</li>
+            <li><b>Prueba de Micrófonos Físicos:</b> Probar cada micrófono de pedestal y de mano en el salón antes de abrir las puertas al público.</li>
+            <li><b>Higienización:</b> Desinfectar adecuadamente los micrófonos que serán utilizados durante la sesión.</li>
           </ul>
         `
       },
       'detail-post-reunion': {
         title: '🚪 Protocolo Posterior a la Reunión',
         html: `
-          <h4>Pasos de Seguridad y Desconexión</h4>
+          <h4>Apagado y Seguridad</h4>
           <ul>
-            <li><b>Cámara del Salón:</b> Apagar o cubrir la cámara del salón al terminar la oración. Los asistentes virtuales solo deben ver una imagen de cierre o pantallas en negro.</li>
-            <li><b>Apagado Secuencial:</b> Apagar primero los altavoces/amplificadores principales y después la consola de mezclas para evitar chasquidos de audio que dañen las bocinas.</li>
+            <li><b>Privacidad en Zoom:</b> Al terminar la oración final, apagar la cámara de la plataforma. La audiencia virtual no debe seguir viendo el interior del salón una vez concluida la reunión.</li>
+            <li><b>Secuencia de Cierre de Sonido:</b> Bajar los faders del audio y apagar los amplificadores antes de desconectar la consola para evitar chasquidos que dañen los altavoces.</li>
           </ul>
         `
       },
       'eq-red': {
-        title: '🌐 Conexión a Red e Internet',
+        title: '🌐 Conexión a Red e Internet (Carta S-260)',
         html: `
-          <h4>Especificaciones de Conexión</h4>
+          <h4>Directrices de Conectividad</h4>
           <ul>
-            <li>La computadora de Audio y Video <b>NUNCA</b> debe estar conectada por Wi-Fi. Siempre debe emplearse un cable de red Ethernet directo.</li>
-            <li>Si la velocidad de Internet en el Salón es baja, cambiar la contraseña del Wi-Fi del salón antes de la reunión para limitar que los asistentes conecten teléfonos personales.</li>
+            <li>La computadora utilizada para transmitir la reunión debe estar conectada mediante **cable Ethernet directo** al módem o router.</li>
+            <li>Evitar el uso de redes Wi-Fi en el equipo principal de transmisión por razones de estabilidad.</li>
+            <li>Si el ancho de banda es limitado, restringir el acceso del Wi-Fi público del auditorio durante la transmisión.</li>
           </ul>
-          <div class="warning-box">
-            El Wi-Fi es inestable y puede provocar congelamientos de video o caídas de Zoom a mitad de un discurso.
-          </div>
         `
       },
       'eq-camara': {
-        title: '🎥 Directrices para la Cámara del Salón',
+        title: '🎥 Cámara del Salón del Reino (Carta S-261)',
         html: `
           <h4>Ubicación y Encuadre</h4>
           <ul>
-            <li>La cámara debe estar montada preferiblemente en el techo o en un trípode alto cerca de la mesa de control.</li>
-            <li><b>Toma Permitida:</b> Solo una toma panorámica fija que abarque la plataforma principal (atril, mesa y pantallas).</li>
-            <li><b>PROHIBICIÓN STRICTA:</b> Nunca enfocar o girar la cámara hacia el auditorio, pasillos o caras de los asistentes por motivos de privacidad.</li>
+            <li>La cámara debe instalarse fija en un lugar seguro (techo o trípode estable cerca del área de audio y video).</li>
+            <li><b>Encuadre Permitido:</b> Solo debe emplearse una toma panorámica fija de la plataforma principal (atril, mesa y pantallas).</li>
+            <li><b>Restricción de Privacidad:</b> Queda prohibido orientar o girar la cámara hacia el público, los pasillos o los asistentes en el auditorio.</li>
           </ul>
         `
       },
       'eq-audio-pantallas': {
-        title: '🎛️ Mezclador de Audio y Pantallas',
+        title: '🎛️ Consola de Audio y Pantallas (Carta S-261)',
         html: `
-          <h4>Conexiones de Audio y Monitores</h4>
+          <h4>Conexión y Prevensión de Acoples</h4>
           <ul>
-            <li><b>Conexión Audio-PC:</b> La salida de la consola debe ingresar a la PC mediante una interfaz USB dedicada o tarjeta de sonido analógica.</li>
-            <li><b>Configuración de Pantallas en Windows:</b> Seleccionar la opción "Extender estas pantallas". El monitor del operador será la pantalla 1 y los proyectores/TVs del salón serán la pantalla 2.</li>
-            <li><b>Prevención de Acoples (Feedback):</b> Cualquier dispositivo usado en la plataforma para ver Zoom debe unirse <b>sin audio de equipo conectado</b>.</li>
+            <li><b>Integración PC-Consola:</b> Enviar la señal de audio de la computadora hacia un canal dedicado de la consola de mezclas.</li>
+            <li><b>Configuración de Monitores en Windows:</b> Seleccionar la opción <i>"Extender estas pantallas"</i> para que el escritorio principal quede en el monitor del operador y el contenido proyectado vaya al auditorio.</li>
+            <li><b>Prevención de Acoples (Feedback):</b> Todo dispositivo utilizado en la plataforma para seguir la videoconferencia debe unirse a Zoom **sin conectar el audio**.</li>
           </ul>
         `
       },
       'sw-video-res': {
-        title: '🎬 Reproducción de Video y Calidad',
+        title: '🎬 Reproducción de Video y Calidad (Carta S-179)',
         html: `
-          <h4>Resoluciones Recomendadas</h4>
+          <h4>Formatos y Resoluciones</h4>
           <ul>
-            <li><b>720p (HD):</b> Calidad estándar recomendada para reproducir en las pantallas del Salón del Reino.</li>
-            <li><b>480p:</b> Utilizar únicamente si la reunión se lleva a cabo 100% por videoconferencia y la conexión a Internet es débil.</li>
+            <li><b>720p (HD):</b> Resolución recomendada para proyectar videos en las pantallas del Salón del Reino.</li>
+            <li><b>480p:</b> Reservado para transmisiones en lugares con conexiones de red muy inestables.</li>
           </ul>
-          <h4>JW Library</h4>
-          <p>En la configuración de JW Library, activar siempre la opción: <i>"Reproducir el video en otra pantalla"</i> para que el video se abra automáticamente en los proyectores del salón.</p>
+          <h4>Configuración en JW Library</h4>
+          <p>Activar la opción <i>"Reproducir video en una pantalla secundaria"</i> dentro del menú de ajustes de la aplicación JW Library.</p>
         `
       },
       'sw-zoom-settings': {
-        title: '⚙️ Ajustes Paso a Paso en Zoom',
+        title: '⚙️ Ajustes Internos en Zoom (Carta S-260)',
         html: `
-          <h4>Dentro de la Ventana de Configuración de Zoom:</h4>
+          <h4>Configuración Recomendada del Menú de Zoom:</h4>
           <ul>
-            <li><b>General:</b> Marcar la casilla <i>"Utilizar dos monitores"</i>.</li>
-            <li><b>Video:</b> Seleccionar la cámara de la plataforma. Desmarcar "Retocar mi apariencia".</li>
-            <li><b>Audio:</b> En supresión de ruido de fondo, seleccionar <i>"Automático"</i>. Confirmar que el micrófono sea la interfaz de la consola.</li>
-            <li><b>Compartir Pantalla:</b> Al hacer clic en compartir pantalla en Zoom, activar obligatoriamente en la parte inferior las casillas <b>"Compartir sonido"</b> y <b>"Optimizar para clip de video"</b>.</li>
+            <li><b>Pantallas:</b> Activar la opción <i>"Utilizar dos monitores"</i>.</li>
+            <li><b>Audio:</b> Ajustar la supresión de ruido de fondo en modo <i>Automático</i>. Confirmar que el micrófono de entrada provenga de la consola.</li>
+            <li><b>Compartir Pantalla:</b> Al compartir un video en Zoom, marcar siempre en la parte inferior las casillas <b>"Compartir sonido"</b> y <b>"Optimizar para clip de video"</b>.</li>
           </ul>
         `
       },
       'sw-musica': {
-        title: '🎵 Control de Música de Fondo',
+        title: '🎵 Control de Música de Fondo (Carta S-179)',
         html: `
-          <h4>Reproducción Correcta de Música</h4>
-          <p>Para evitar que las pantallas del salón muestren reproductores de video mientras suena la música antes o después de la reunión:</p>
+          <h4>Proyección Visual y Auditiva Simultánea</h4>
+          <p>Para evitar que al colocar la música se abran ventanas o reproductores sobre la imagen proyectada:</p>
           <ul>
-            <li>Usar archivos exclusivamente de <b>audio (MP3/M4A)</b> de las canciones del reino.</li>
-            <li>Mientras se reproduce el audio en segundo plano, la pantalla mantendrá fija la imagen del Texto del Año.</li>
+            <li>Utilizar únicamente **archivos de audio (MP3/M4A)** de la producción musical de la organización.</li>
+            <li>De este modo, la pantalla mantendrá proyectada la imagen fija del Texto del Año mientras el audio suena de fondo.</li>
           </ul>
         `
       },
       's178-encuadre': {
-        title: '📐 Encuadre e Iluminación (Carta S-178)',
+        title: '📐 Encuadre e Iluminación del Orador (Carta S-178)',
         html: `
-          <h4>Normas para el Orador desde Casa</h4>
+          <h4>Indicaciones para Quienes Participan por Zoom</h4>
           <ul>
-            <li><b>Encuadre:</b> La cámara debe estar fija en posición horizontal. El plano debe abarcar desde justo debajo del pecho hasta dejar un margen sobre la cabeza.</li>
-            <li><b>Altura:</b> La lente de la cámara debe estar exactamente a la altura de los ojos (no enfocar desde abajo hacia arriba).</li>
-            <li><b>Iluminación:</b> La luz principal debe dar de frente al rostro. Evitar tener ventanas o focos potentes a las espaldas del orador.</li>
-            <li><b>Micrófono:</b> Si usa manos libres o auriculares, el micrófono debe estar situado a <b>3 - 5 cm</b> de la boca.</li>
+            <li><b>Encuadre:</b> La cámara debe estar en posición horizontal. El plano debe abarcar desde justo debajo del pecho hasta dejar espacio libre por encima de la cabeza.</li>
+            <li><b>Altura:</b> La lente de la cámara debe colocarse exactamente a la altura de los ojos.</li>
+            <li><b>Iluminación:</b> La fuente principal de luz debe iluminar el rostro de frente. Evitar contraluces o ventanas a las espaldas.</li>
+            <li><b>Micrófono:</b> El micrófono (de solapa o auriculares) debe ubicarse a una distancia aproximada de **3 a 5 cm** de la boca.</li>
           </ul>
         `
       },
       's178-participaciones': {
-        title: '🎭 Reglas según el Tipo de Participación',
+        title: '🎭 Tipos de Asignaciones y Transmisión (Carta S-178)',
         html: `
           <h4>1. Discursos y Lecturas</h4>
-          <p>Se destaca el video del orador tanto en Zoom como en las pantallas del Salón del Reino.</p>
+          <p>Se destaca el video del orador tanto para la videoconferencia en Zoom como en las pantallas del Salón del Reino.</p>
           
           <h4>2. Asignaciones Dobles (Demostraciones)</h4>
-          <p>Ambos participantes deben estar en el mismo formato: **o ambos presenciales en el Salón, o ambos por Zoom**. No debe realizarse una demostración mixta (uno en Zoom y otro presencial) para evitar desfases de audio y retrasos visuales.</p>
+          <p>Ambos participantes deben utilizar la misma modalidad: **o ambos presenciales en la plataforma, o ambos conectados por videoconferencia**. No deben combinarse modalidades (uno en el salón y otro en Zoom) para evitar desfases de audio e imagen.</p>
 
-          <h4>3. Comentarios del Público en Zoom</h4>
-          <p>Cuando un asistente comenta desde Zoom, se activa su micrófono pero **NO se destaca su video** en las pantallas del Salón del Reino. Pasa únicamente en formato de AUDIO.</p>
+          <h4>3. Comentarios de la Audiencia Virtual</h4>
+          <p>Cuando un asistente hace un comentario desde Zoom, se le abre el micrófono pero **no se destaca su video** en las pantallas del Salón del Reino. Su comentario pasa en formato de AUDIO.</p>
         `
       },
       's178-acomodador': {
-        title: '🛡️ Funciones del Acomodador de Zoom',
+        title: '🛡️ Acomodación y Seguridad en Zoom (Carta S-178 y Carta S-144)',
         html: `
-          <h4>Seguridad y Control de la Sala</h4>
+          <h4>Control de Acceso y Asistencia</h4>
           <ul>
-            <li><b>Sala de Espera:</b> Reconocer el nombre y apellido de cada persona antes de admitirla. No permitir acceso a nombres genéricos (ej. "iPhone de Usuario").</li>
-            <li><b>Asistencia:</b> Contar las conexiones y multiplicar según el número de personas observadas en cada cámara.</li>
-            <li><b>Interrupciones:</b> Si una cámara proyecta contenido inapropiado o un micrófono interrumpe, apagar el video/audio inmediatamente o eliminar al usuario de la sala (según la carta S-144).</li>
+            <li><b>Sala de Espera:</b> Verificar que el nombre del usuario corresponda a un miembro conocido antes de admitirlo. No dar acceso a cuentas con nombres genéricos de dispositivos.</li>
+            <li><b>Conteo de Asistencia:</b> Sumar las personas conectadas observando las cámaras activas para reportar el total exacto.</li>
+            <li><b>Protocolo ante Interrupciones:</b> Si una cámara o audio interrumpe el orden de la reunión, silenciar o apagar la cámara de inmediato conforme a la Carta S-144.</li>
           </ul>
         `
       },
       'check-30min': {
         title: '✅ Verificación de Inicio (-30 min)',
-        html: `<p>Comprobar encendido de PC, cable Ethernet conectado, mezcladora encendida, audio asignado al canal principal, programas Zoom y JW Library iniciados.</p>`
+        html: `<p>Comprobar encendido de PC, cable Ethernet conectado, consola encendida, audio asignado al canal correspondiente, JW Library y Zoom abiertos.</p>`
       },
       'check-25min': {
         title: '✅ Verificación con Oradores Virtuales (-25 min)',
-        html: `<p>Admitir oradores de Zoom, hacer prueba de sonido, revisar luz frontal, encuadre a la altura de los ojos y distancia del micrófono.</p>`
+        html: `<p>Admitir a los oradores de Zoom, probar audio, revisar luz frontal, encuadre a la altura de los ojos y distancia del micrófono conforme a la Carta S-178.</p>`
       },
       'check-1min': {
         title: '✅ Verificación Final (-1 min)',
-        html: `<p>Bajar música de fondo, silenciar a todos en Zoom, desmarcar 'Permitir reactivar micrófono' e iniciar anuncio del presidente.</p>`
+        html: `<p>Bajar la música de fondo, silenciar a todos en Zoom, desmarcar 'Permitir reactivar micrófono' e iniciar el anuncio del presidente.</p>`
       },
       'check-durante': {
         title: '✅ Verificación Durante la Reunión',
-        html: `<p>Destacar video solo de discursos principales. Transmitir comentarios de Zoom únicamente en formato audio. Monitorear volumen.</p>`
+        html: `<p>Destacar video únicamente en discursos principales. Los comentarios de la audiencia en Zoom se transmiten solo en formato de AUDIO. Mantener el control del volumen.</p>`
       }
     };
 
-    // Modal Control Functions
+    // Funciones de control de la pantalla modal
     function openDetail(id) {
       const data = detailData[id];
       if (!data) return;
@@ -854,7 +863,7 @@
       document.getElementById('detailModal').classList.remove('active');
     }
 
-    // Keyboard controls
+    // Controles por teclado
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         closeDetail();
