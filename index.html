@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Capacitación Integral de Audio, Video y Videoconferencia</title>
+  <title>Capacitación Integral de Audio, Video y Videoconferencia - Manual Extendido</title>
   <style>
     :root {
       /* Estilo de paleta oficial basado en jw.org */
@@ -11,6 +11,7 @@
       --jw-navy-dark: #0c3b62;
       --jw-blue-light: #eef5fc;
       --jw-accent: #0072ce;
+      --jw-gold: #f59e0b;
       --bg-main: #f4f6f9;
       --card-bg: #ffffff;
       --card-border: #cfd8e3;
@@ -19,7 +20,6 @@
       --warning: #b45309;
       --warning-bg: #fffbe3;
       --warning-border: #fcd34d;
-      --success: #15803d;
       --shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
     }
 
@@ -39,7 +39,6 @@
       overflow: hidden;
     }
 
-    /* Encabezado */
     header {
       background-color: var(--jw-navy);
       color: #ffffff;
@@ -68,7 +67,6 @@
       border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
-    /* Área Principal */
     .deck-container {
       flex: 1;
       position: relative;
@@ -81,9 +79,9 @@
     .slide {
       display: none;
       width: 100%;
-      max-width: 1120px;
+      max-width: 1140px;
       height: 100%;
-      max-height: 660px;
+      max-height: 680px;
       background-color: var(--card-bg);
       border-radius: 8px;
       border: 1px solid var(--card-border);
@@ -103,6 +101,130 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    /* ESTILOS DE LA PORTADA DINÁMICA */
+    .slide.cover-slide {
+      background: linear-gradient(135deg, #0c3b62 0%, #135286 60%, #0072ce 100%);
+      color: #ffffff;
+      border: none;
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 40px;
+    }
+
+    .cover-slide::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 60%);
+      animation: pulseGlow 8s infinite alternate ease-in-out;
+      pointer-events: none;
+    }
+
+    @keyframes pulseGlow {
+      0% { transform: scale(0.95); opacity: 0.6; }
+      100% { transform: scale(1.05); opacity: 1; }
+    }
+
+    .cover-content {
+      position: relative;
+      z-index: 2;
+      max-width: 820px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .cover-badge {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(8px);
+      padding: 6px 18px;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #e2e8f0;
+      animation: fadeInDown 0.6s ease-out;
+    }
+
+    .cover-title {
+      font-size: 2.3rem;
+      font-weight: 800;
+      line-height: 1.25;
+      text-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      letter-spacing: -0.5px;
+    }
+
+    .cover-subtitle {
+      font-size: 1.1rem;
+      color: #dbeafe;
+      font-weight: 400;
+      max-width: 680px;
+    }
+
+    .scripture-card {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-left: 5px solid var(--jw-gold);
+      backdrop-filter: blur(10px);
+      border-radius: 8px;
+      padding: 22px 28px;
+      margin: 10px 0;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      transform: translateY(0);
+      transition: transform 0.3s ease;
+    }
+
+    .scripture-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .scripture-text {
+      font-size: 1.25rem;
+      font-style: italic;
+      color: #ffffff;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+
+    .scripture-ref {
+      display: block;
+      margin-top: 10px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--jw-gold);
+      letter-spacing: 1px;
+    }
+
+    .btn-start {
+      background-color: var(--jw-gold);
+      color: #0c3b62;
+      font-size: 1.05rem;
+      font-weight: 700;
+      padding: 14px 32px;
+      border-radius: 30px;
+      box-shadow: 0 4px 16px rgba(245, 158, 11, 0.4);
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-start:hover {
+      background-color: #fbbf24;
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(245, 158, 11, 0.6);
+    }
+
+    /* FIN ESTILOS PORTADA */
+
     .slide-header {
       margin-bottom: 16px;
     }
@@ -121,10 +243,9 @@
       margin-top: 6px;
     }
 
-    /* Grid e Ítems */
     .dashboard-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 18px;
       flex: 1;
       overflow-y: auto;
@@ -177,7 +298,6 @@
       gap: 4px;
     }
 
-    /* Timeline */
     .timeline {
       display: flex;
       justify-content: space-between;
@@ -208,7 +328,6 @@
       font-size: 1.1rem;
     }
 
-    /* Navegación */
     footer {
       background-color: #ffffff;
       padding: 12px 28px;
@@ -243,7 +362,6 @@
       cursor: not-allowed;
     }
 
-    /* Ventana Modal */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -269,8 +387,8 @@
       border: 1px solid var(--card-border);
       border-radius: 8px;
       width: 100%;
-      max-width: 950px;
-      max-height: 88vh;
+      max-width: 980px;
+      max-height: 90vh;
       display: flex;
       flex-direction: column;
       box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
@@ -288,24 +406,28 @@
 
     .modal-header h2 {
       color: #ffffff;
-      font-size: 1.3rem;
+      font-size: 1.25rem;
       font-weight: 600;
     }
 
     .modal-body {
-      padding: 24px;
+      padding: 26px;
       overflow-y: auto;
       font-size: 0.95rem;
-      line-height: 1.6;
+      line-height: 1.65;
       color: var(--text-main);
     }
 
     .modal-body h4 {
       color: var(--jw-navy);
-      margin: 18px 0 8px 0;
-      font-size: 1.1rem;
+      margin: 22px 0 10px 0;
+      font-size: 1.15rem;
       border-left: 4px solid var(--jw-navy);
       padding-left: 10px;
+    }
+
+    .modal-body h4:first-child {
+      margin-top: 0;
     }
 
     .modal-body p {
@@ -318,7 +440,7 @@
     }
 
     .modal-body li {
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     .info-box {
@@ -326,9 +448,9 @@
       border: 1px solid #b8d5f3;
       border-left: 4px solid var(--jw-navy);
       border-radius: 4px;
-      padding: 12px 16px;
-      margin: 16px 0;
-      font-size: 0.9rem;
+      padding: 14px 18px;
+      margin: 18px 0;
+      font-size: 0.92rem;
     }
 
     .warning-box {
@@ -336,9 +458,9 @@
       border: 1px solid var(--warning-border);
       border-left: 4px solid var(--warning);
       border-radius: 4px;
-      padding: 12px 16px;
-      margin: 16px 0;
-      font-size: 0.9rem;
+      padding: 14px 18px;
+      margin: 18px 0;
+      font-size: 0.92rem;
       color: #78350f;
     }
 
@@ -353,155 +475,171 @@
 </head>
 <body>
 
-  <!-- Encabezado Principal -->
   <header>
-    <h1>🎛️ Capacitación para el Personal de Audio, Video y Videoconferencia</h1>
-    <div class="slide-counter" id="slideCounter">Diapositiva 1 de 6</div>
+    <h1>🎛️ Capacitación Integral para el Personal de Audio, Video y Videoconferencia</h1>
+    <div class="slide-counter" id="slideCounter">Diapositiva 1 de 7</div>
   </header>
 
-  <!-- Deck de Diapositivas -->
   <div class="deck-container">
 
-    <!-- DIAPOSITIVA 1: MARCO OFICIAL Y CARTAS -->
-    <div class="slide active">
+    <!-- DIAPOSITIVA 1: PORTADA DINÁMICA -->
+    <div class="slide cover-slide active">
+      <div class="cover-content">
+        <div class="cover-badge">🎙️ PROGRAMA DE CAPACITACIÓN TÉCNICA Y OPERATIVA 🎬</div>
+        <h1 class="cover-title">Capacitación Integral de Audio, Video y Videoconferencia</h1>
+        <p class="cover-subtitle">Manual y Guía de Procedimientos para los Servidores del Salón del Reino</p>
+
+        <div class="scripture-card">
+          <p class="scripture-text">“Las cosas que oíste de mí [...] encárgalas a hombres fieles.”</p>
+          <span class="scripture-ref">2 TIMOTEO 2:2</span>
+        </div>
+
+        <button class="btn-start" onclick="changeSlide(1)">
+          🚀 Iniciar Capacitación
+        </button>
+      </div>
+    </div>
+
+    <!-- DIAPOSITIVA 2 (Anterior Diapositiva 1) -->
+    <div class="slide">
       <div class="slide-header">
         <h2 class="slide-title">Marco Directivo y Cartas Oficiales de Instrucción</h2>
-        <p class="slide-subtitle">Haz clic en cada tarjeta para ver la explicación detallada de los reglamentos aplicables a todas las funciones.</p>
+        <p class="slide-subtitle">Haz clic en cada tarjeta para desplegar el análisis normativo detallado para el equipo técnico.</p>
       </div>
       <div class="dashboard-grid">
         <div class="interactive-card" onclick="openDetail('mod-cartas-base')">
-          <h3>📜 Compendio de Cartas Oficiales <span>🔍</span></h3>
-          <p>Desglose completo y propósito de las cartas S-178, S-261, S-260, S-179 y S-144 en la organización técnica del Salón del Reino.</p>
-          <div class="card-action">Ver cartas de instrucción y alcance →</div>
+          <h3>📜 Compendio Exhaustivo de Cartas <span>🔍</span></h3>
+          <p>Análisis detallado de las normas contenidas en las cartas S-178, S-261, S-260, S-179 y S-144 sobre la operación del Salón del Reino.</p>
+          <div class="card-action">Ver análisis exhaustivo de normas →</div>
         </div>
         <div class="interactive-card" onclick="openDetail('mod-coordinacion-general')">
           <h3>🤝 Coordinación General del Equipo <span>🔍</span></h3>
-          <p>Instrucciones unificadas de trabajo en equipo entre el operador de sonido, el operador de pantalla y el encargado de Zoom.</p>
-          <div class="card-action">Ver directrices de coordinación →</div>
+          <p>Protocolos de trabajo conjunto e interoperabilidad entre el Operador de Audio, Operador de Video y Acomodador de Zoom.</p>
+          <div class="card-action">Ver manual de trabajo en equipo →</div>
         </div>
         <div class="interactive-card" onclick="openDetail('mod-objetivos-sesion')">
-          <h3>🎯 Metas de Calidad y Dignidad <span>🔍</span></h3>
-          <p>Pautas de excelencia técnica para evitar interrupciones, mantener el decoro y garantizar la enseñanza fluida.</p>
-          <div class="card-action">Ver objetivos de calidad →</div>
+          <h3>🎯 Metas de Calidad, Respeto y Dignidad <span>🔍</span></h3>
+          <p>Directrices para garantizar una instrucción espiritual fluida, libre de errores visibles, distracciones o fallos de audio.</p>
+          <div class="card-action">Ver estándares de calidad →</div>
         </div>
       </div>
     </div>
 
-    <!-- DIAPOSITIVA 2: ROL OPERADOR DE AUDIO -->
+    <!-- DIAPOSITIVA 3 (Anterior Diapositiva 2) -->
     <div class="slide">
       <div class="slide-header">
         <h2 class="slide-title">1. Asignación: Operador de Audio (Consola y Micrófonos)</h2>
-        <p class="slide-subtitle">Manual operativo detallado para el manejo de sonido presencial y virtual (Carta S-261).</p>
+        <p class="slide-subtitle">Manual operativo completo de sonorización presencial y virtual (Carta S-261).</p>
       </div>
       <div class="dashboard-grid">
         <div class="interactive-card" onclick="openDetail('rol-audio-consola')">
-          <h3>🎛️ Manejo de Consola y Ganancias <span>🔍</span></h3>
-          <p>Ajustes de faders, ganancia de entrada, ecualización de voz y calibración del volumen general del auditorio.</p>
-          <div class="card-action">Ver instrucciones de consola →</div>
+          <h3>🎛️ Consola, Estructura de Ganancia y EQ <span>🔍</span></h3>
+          <p>Ajustes técnicos de PFL, trim/gain, filtros de paso alto (HPF), ecualización de frecuencias vocales y faders principales.</p>
+          <div class="card-action">Ver guía técnica de consola →</div>
         </div>
         <div class="interactive-card" onclick="openDetail('rol-audio-mics')">
-          <h3>🎤 Micrófonos Físicos e Higiene <span>🔍</span></h3>
-          <p>Gestión de micrófonos de pedestal y de mano, cambio de baterías, asignación a acomodadores y protocolo de sanitización.</p>
-          <div class="card-action">Ver protocolo de micrófonos →</div>
+          <h3>🎤 Gestión e Higiene de Micrófonos <span>🔍</span></h3>
+          <p>Verificación de frecuencias, baterías, distribución para acomodadores de pasillo, técnicas de uso e higienización.</p>
+          <div class="card-action">Ver protocolo de microfonía →</div>
         </div>
         <div class="interactive-card" onclick="openDetail('rol-audio-integracion')">
-          <h3>🔊 Integración del Sonido con Zoom <span>🔍</span></h3>
-          <p>Enrutamiento de audio hacia la computadora y retorno desde Zoom, evitando ecos y vatios de acople (feedback).</p>
-          <div class="card-action">Ver esquema de audio virtual →</div>
+          <h3>🔊 Integración de Audio con Zoom (Mix-Minus) <span>🔍</span></h3>
+          <p>Enrutamiento de señal con envíos auxiliares (N-1) para impedir retroalimentaciones (feedback) y ecos desagradables.</p>
+          <div class="card-action">Ver esquema de enrutamiento N-1 →</div>
         </div>
       </div>
     </div>
 
-    <!-- DIAPOSITIVA 3: ROL OPERADOR DE VIDEO Y SISTEMA -->
+    <!-- DIAPOSITIVA 4 (Anterior Diapositiva 3) -->
     <div class="slide">
       <div class="slide-header">
         <h2 class="slide-title">2. Asignación: Operador de Video y Sistema (PC y Proyección)</h2>
-        <p class="slide-subtitle">Instrucciones integradas para la PC principal, JW Library, pantallas y Zoom (Carta S-179 y S-260).</p>
+        <p class="slide-subtitle">Procedimientos integrados para PC principal, JW Library, proyectores y Zoom (Cartas S-179 y S-260).</p>
       </div>
       <div class="dashboard-grid">
         <div class="interactive-card" onclick="openDetail('rol-video-pantallas')">
           <h3>🖥️ Configuración de Pantallas en Windows <span>🔍</span></h3>
-          <p>Uso del modo "Extender estas pantallas", resolución de proyectores/TVs y prevención de ventanas accidentales en el auditorio.</p>
-          <div class="card-action">Ver configuración de pantallas →</div>
+          <p>Uso exclusivo del modo "Extender", resoluciones nativas, ocultamiento de cursor y desactivación de notificaciones.</p>
+          <div class="card-action">Ver ajustes del sistema operativo →</div>
         </div>
         <div class="interactive-card" onclick="openDetail('rol-video-jwlibrary')">
-          <h3>🎬 JW Library y Reproducción HD <span>🔍</span></h3>
-          <p>Descarga previa de videos (720p), activación de pantalla secundaria y control de reproducción durante las partes.</p>
-          <div class="card-action">Ver guía de JW Library →</div>
+          <h3>🎬 JW Library y Reproducción Multimedia <span>🔍</span></h3>
+          <p>Configuración de pantalla secundaria en JW Library, gestión de descargas HD (720p/1080p) y sincronización con oradores.</p>
+          <div class="card-action">Ver manual de JW Library →</div>
         </div>
         <div class="interactive-card" onclick="openDetail('rol-video-musica')">
-          <h3>🎵 Transmisión de Música y Texto del Año <span>🔍</span></h3>
-          <p>Proyección fija de imagen mientras suena música de fondo en formato audio MP3 antes y después de la reunión.</p>
-          <div class="card-action">Ver procedimiento multimedia →</div>
+          <h3>🎵 Proyección de Música y Texto del Año <span>🔍</span></h3>
+          <p>Procedimiento exacto para reproducir audio MP3/M4A proyectando la imagen fija del Texto del Año sin distorsión visual.</p>
+          <div class="card-action">Ver protocolo audiovisual previo →</div>
         </div>
       </div>
     </div>
 
-    <!-- DIAPOSITIVA 4: ROL ACOMODADOR DE ZOOM -->
+    <!-- DIAPOSITIVA 5 (Anterior Diapositiva 4) -->
     <div class="slide">
       <div class="slide-header">
         <h2 class="slide-title">3. Asignación: Acomodador de Videoconferencia (Zoom)</h2>
-        <p class="slide-subtitle">Control de la reunión virtual, seguridad, silenciamiento y asistencia (Carta S-178 y S-144).</p>
+        <p class="slide-subtitle">Control de la sala virtual, admisión de seguridad, moderación y asistencia (Cartas S-178 y S-144).</p>
       </div>
       <div class="dashboard-grid">
         <div class="interactive-card" onclick="openDetail('rol-zoom-espera')">
-          <h3>🛡️ Sala de Espera y Admisión Segura <span>🔍</span></h3>
-          <p>Criterios estrictos para identificar usuarios, cambiar nombres genéricos de dispositivos y denegar acceso desconocido.</p>
-          <div class="card-action">Ver reglas de admisión →</div>
+          <h3>🛡️ Sala de Espera y Filtros de Seguridad <span>🔍</span></h3>
+          <p>Procedimiento estricto para identificación de usuarios, renombrado de dispositivos genéricos y denegación de accesos.</p>
+          <div class="card-action">Ver normas de admisión segura →</div>
         </div>
         <div class="interactive-card" onclick="openDetail('rol-zoom-silencio')">
           <h3>🔇 Control de Micrófonos y Comentarios <span>🔍</span></h3>
-          <p>Uso de "Silenciar a todos", desmarcar reactivación autónoma y paso exclusivo de AUDIO en comentarios del público.</p>
-          <div class="card-action">Ver reglas de audio en Zoom →</div>
+          <p>Gestión de "Silenciar a todos", permiso de reactivación, y aplicación de la norma S-178 (comentarios en SOLO AUDIO).</p>
+          <div class="card-action">Ver normas de audio en Zoom →</div>
         </div>
         <div class="interactive-card" onclick="openDetail('rol-zoom-asistencia')">
           <h3>📊 Conteo de Asistencia y Protocolo S-144 <span>🔍</span></h3>
-          <p>Cálculo de asistentes por cámara y protocolo de actuación inmediata ante cámaras o audios con interrupciones.</p>
-          <div class="card-action">Ver asistencia y seguridad →</div>
+          <p>Método de recuento visual por cámara, registro formal y procedimiento de respuesta inmediata ante incidentes de seguridad.</p>
+          <div class="card-action">Ver conteo y plan de contingencia →</div>
         </div>
       </div>
     </div>
 
-    <!-- DIAPOSITIVA 5: ORADORES Y PARTICIPANTES VIRTUALES -->
+    <!-- DIAPOSITIVA 6 (Anterior Diapositiva 5) -->
     <div class="slide">
       <div class="slide-header">
         <h2 class="slide-title">4. Directrices para Oradores y Participantes Virtuales</h2>
-        <p class="slide-subtitle">Pautas estandarizadas para quienes presentan discursos o asignaciones por Zoom (Carta S-178).</p>
+        <p class="slide-subtitle">Instrucciones técnicas unificadas para intervenciones por videoconferencia desde casa (Carta S-178).</p>
       </div>
       <div class="dashboard-grid">
         <div class="interactive-card" onclick="openDetail('s178-encuadre-luz')">
-          <h3>📐 Encuadre, Cámara e Iluminación <span>🔍</span></h3>
-          <p>Cámara horizontal a la altura de los ojos, plano medio plano, luz de frente y prevención de fondos distractores.</p>
-          <div class="card-action">Ver normas de encuadre →</div>
+          <h3>📐 Encuadre, Posición e Iluminación <span>🔍</span></h3>
+          <p>Uso obligatorio de orientación horizontal, plano medio (pecho arriba), lente a la altura de los ojos y luz frontal limpia.</p>
+          <div class="card-action">Ver pautas de imagen personal →</div>
         </div>
         <div class="interactive-card" onclick="openDetail('s178-mic-posicion')">
-          <h3>🎙️ Posición del Micrófono y Audio Personal <span>🔍</span></h3>
-          <p>Uso correcto de auriculares o micrófono de solapa a 3-5 cm de la boca y eliminación de ruidos del entorno.</p>
-          <div class="card-action">Ver normas de micrófono →</div>
+          <h3>🎙️ Microfonía y Acústica en el Hogar <span>🔍</span></h3>
+          <p>Ubicación del micrófono a 3-5 cm, eliminación de roces con ropa y acondicionamiento del entorno doméstico.</p>
+          <div class="card-action">Ver pautas de audio personal →</div>
         </div>
         <div class="interactive-card" onclick="openDetail('s178-partes-dobles')">
-          <h3>🎭 Asignaciones Dobles (Demostraciones) <span>🔍</span></h3>
-          <p>Regla obligatoria de no mezclar plataformas: ambos presenciales en el Salón o ambos por Zoom.</p>
-          <div class="card-action">Ver reglas de demostraciones →</div>
+          <h3>🎭 Prohibición de Formatos Mixtos <span>🔍</span></h3>
+          <p>Regla estricta sobre asignaciones dobles: ambos participantes presenciales en el Salón o ambos conectados por Zoom.</p>
+          <div class="card-action">Ver regla de demostraciones →</div>
         </div>
       </div>
     </div>
 
-    <!-- DIAPOSITIVA 6: CRONOGRAMA UNIFICADO Y CHECKLIST -->
+    <!-- DIAPOSITIVA 7 (Anterior Diapositiva 6) -->
     <div class="slide">
       <div class="slide-header">
-        <h2 class="slide-title">5. Cronograma Unificado y Lista de Verificación</h2>
-        <p class="slide-subtitle">Línea de tiempo minuto a minuto que integra todas las asignaciones desde la llegada hasta el cierre.</p>
+        <h2 class="slide-title">5. Cronograma Unificado y Lista de Verificación en Vivo</h2>
+        <p class="slide-subtitle">Secuencia temporal paso a paso para la preparación, ejecución y cierre de la reunión.</p>
       </div>
 
       <div class="timeline">
         <div class="time-node" onclick="openDetail('check-30min-unificado')">
           <div class="time">-30 min</div>
-          <p style="font-size: 0.8rem; margin-top: 4px;">Arribo General</p>
+          <p style="font-size: 0.8rem; margin-top: 4px;">Arribo y Encendido</p>
         </div>
         <div class="time-node" onclick="openDetail('check-25min-unificado')">
           <div class="time">-25 min</div>
-          <p style="font-size: 0.8rem; margin-top: 4px;">Pruebas Virtuales</p>
+          <p style="font-size: 0.8rem; margin-top: 4px;">Pruebas de Oradores</p>
         </div>
         <div class="time-node" onclick="openDetail('check-15min-unificado')">
           <div class="time">-15 min</div>
@@ -509,7 +647,7 @@
         </div>
         <div class="time-node" onclick="openDetail('check-1min-unificado')">
           <div class="time">-1 min</div>
-          <p style="font-size: 0.8rem; margin-top: 4px;">Bloqueo y Anuncio</p>
+          <p style="font-size: 0.8rem; margin-top: 4px;">Bloqueo y Silencio</p>
         </div>
         <div class="time-node" onclick="openDetail('check-cierre-unificado')">
           <div class="time">Cierre</div>
@@ -520,20 +658,20 @@
       <div class="dashboard-grid">
         <div class="interactive-card" onclick="openDetail('check-durante-reunion')">
           <h3>⏱️ Operación Continuada Durante la Reunión <span>🔍</span></h3>
-          <p>Instrucciones en tiempo real para cambios de video, destacar oradores, pase de micrófonos y ecualización de audio.</p>
-          <div class="card-action">Ver flujo de trabajo en vivo →</div>
+          <p>Coordinación en vivo entre audio, video y Zoom durante las lecturas, discursos, canciones y comentarios del público.</p>
+          <div class="card-action">Ver guía de ejecución en vivo →</div>
         </div>
         <div class="interactive-card" onclick="openDetail('check-emergencias')">
-          <h3>🚨 Guía de Solución de Problemas Rápidos <span>🔍</span></h3>
-          <p>Qué hacer si se corta el audio, falla la transmisión de video, o entra una voz no deseada en Zoom.</p>
-          <div class="card-action">Ver protocolo de emergencias →</div>
+          <h3>🚨 Matriz de Solución de Problemas Técnicos <span>🔍</span></h3>
+          <p>Procedimientos de respuesta rápida ante cortes de señal, caídas de audio, pantallas congeladas o ruido en Zoom.</p>
+          <div class="card-action">Ver matriz de emergencias →</div>
         </div>
       </div>
     </div>
 
   </div>
 
-  <!-- Vista Modal para Detalles -->
+  <!-- Modal para Detalles Extensos -->
   <div class="modal-overlay" id="detailModal">
     <div class="modal-content">
       <div class="modal-header">
@@ -541,7 +679,7 @@
         <button class="btn" onclick="closeDetail()">⬅️ Volver a la presentación</button>
       </div>
       <div class="modal-body" id="modalBody">
-        <!-- El contenido detallado se carga dinámicamente -->
+        <!-- Contenido extenso inyectado por JS -->
       </div>
       <div class="modal-footer">
         <button class="btn" onclick="closeDetail()">⬅️ Volver a la presentación</button>
@@ -549,10 +687,9 @@
     </div>
   </div>
 
-  <!-- Pie de Navegación -->
   <footer>
     <button class="btn" id="prevBtn" onclick="changeSlide(-1)" disabled>Anterior</button>
-    <div style="color: var(--text-muted); font-size: 0.85rem;">Utiliza los botones o las flechas ⬅️ ➡️ del teclado para desplazarte</div>
+    <div style="color: var(--text-muted); font-size: 0.85rem;">Utiliza los botones o las flechas ⬅️ ➡️ del teclado para navegar</div>
     <button class="btn" id="nextBtn" onclick="changeSlide(1)">Siguiente</button>
   </footer>
 
@@ -579,309 +716,453 @@
       updateSlide();
     }
 
-    // BASE DE DATOS EXTENSA Y INTEGRADA POR ASIGNACIÓN
+    // BASE DE DATOS EXTENSA Y DETALLADA CON FUSIÓN DE INSTRUCCIONES
     const detailData = {
       'mod-cartas-base': {
-        title: '📜 Compendio y Alcance de las Cartas Oficiales',
+        title: '📜 Compendio y Alcance Detallado de las Cartas Oficiales',
         html: `
-          <h4>1. Carta S-261: Operadores de Audio y Video del Salón del Reino</h4>
-          <p>Establece los procedimientos para la conexión física de la consola de mezclas, mantenimiento de micrófonos inalámbricos, orden en la mesa de control y pautas de volumen para el auditorio.</p>
+          <h4>1. Carta S-261: Instrucciones para Operadores de Audio y Video</h4>
+          <p>Esta directiva establece el estándar técnico que rige el uso de la consola de mezclas, el mantenimiento de los sistemas inalámbricos de microfonía y la preservación del orden en la mesa de control del Salón del Reino. Detalla minuciosamente los parámetros de ecualización, el control del volumen maestro para evitar la fatiga auditiva de la congregación y el protocolo físico para la entrega y desinfección de los micrófonos de mano.</p>
 
           <h4>2. Carta S-178: Reuniones Transmitidas por Videoconferencia</h4>
-          <p>Regula la postura, encuadre, iluminación y microfonía de los oradores en casa. Asimismo, dicta que los comentarios del público desde Zoom pasen solo en audio y prohíbe demostraciones con formato mixto.</p>
+          <p>Norma de manera exhaustiva las intervenciones que se realizan desde entornos domésticos. Regula los aspectos visuales del orador (iluminación frontal, encuadre horizontal 16:9, altura de la lente de la cámara y neutralidad del fondo), los aspectos acústicos (uso de micrófonos a distancia fija y eliminación de ruidos de fondo), y establece de forma categórica dos reglas organizativas fundamentales:</p>
+          <ul>
+            <li><b>Comentarios del público desde Zoom:</b> Se deben transmitir únicamente en formato de **AUDIO**. Bajo ninguna circunstancia se debe proyectar el video de los comentaristas virtuales en las pantallas del Salón del Reino.</li>
+            <li><b>Prohibición de asignaciones mixtas:</b> Queda prohibida la realización de demostraciones o asignaciones dobles donde un participante esté en el Salón del Reino y el otro conectado por Zoom.</li>
+          </ul>
 
-          <h4>3. Carta S-260: Uso de Programas de Videoconferencia</h4>
-          <p>Define los parámetros técnicos requeridos en Zoom, estabilidad de la red por cable Ethernet directo y el uso obligatorio del modo de dos monitores en Windows.</p>
+          <h4>3. Carta S-260: Uso de Software de Videoconferencia y Redes</h4>
+          <p>Define los requisitos informáticos y de infraestructura del sistema. Especifica el uso obligatorio de conexiones a Internet mediante cable Ethernet directo (evitando redes Wi-Fi por su inestabilidad), la configuración del escritorio de Windows en modo de pantallas extendidas y el uso de la función de dos monitores en la plataforma Zoom para gestionar de forma independiente el panel de control y la salida de video.</p>
 
-          <h4>4. Carta S-179: Reproducción de Imágenes y Videos</h4>
-          <p>Norma el uso de JW Library en resolución HD (720p), el uso de pistas de audio para proyectar el Texto del Año y la prohibición de mostrar imágenes no autorizadas.</p>
+          <h4>4. Carta S-179: Reproducción de Videos, Imágenes y Música</h4>
+          <p>Establece que todas las producciones audiovisuales reproducidas durante las reuniones deben provenir exclusivamente de la aplicación oficial **JW Library** o del sitio **JW.ORG**, en resolución HD (720p o 1080p). Dicta el protocolo para reproducir las pistas musicales de las melodías del Reino antes y después de la reunión manteniendo fija en pantalla la imagen del Texto del Año.</p>
 
-          <h4>5. Carta S-144: Acomodación y Seguridad</h4>
-          <p>Aplica para el acomodador virtual en Zoom: admisión en Sala de Espera, verificación de nombres de usuario y acciones ante posibles interrupciones.</p>
+          <h4>5. Carta S-144: Acomodación, Control de Asistencia y Protocolos de Seguridad</h4>
+          <p>Aplica al ámbito de la acomodación virtual. Rige el uso permanente de la Sala de Espera en Zoom, los criterios rigurosos de identificación para admitir conexiones, el método para contar exactamente el número de asistentes virtuales y los pasos inmediatos a seguir ante cualquier intento de interrupción no deseada.</p>
         `
       },
       'mod-coordinacion-general': {
-        title: '🤝 Coordinación General entre Asignaciones',
+        title: '🤝 Coordinación General e Interoperabilidad del Equipo Técnico',
         html: `
-          <h4>Trabajo en Equipo en la Mesa de Control</h4>
-          <p>La operación eficiente de una reunión requiere constante comunicación entre los tres encargados:</p>
+          <h4>1. Sincronización en la Mesa de Control (Audio y Video)</h4>
+          <p>El Operador de Audio y el Operador de Video deben actuar como un único equipo coordinado para garantizar transiciones imperceptibles:</p>
           <ul>
-            <li><b>Operador de Audio y Operador de Video:</b> Deben sincronizar la bajada de volumen con la proyección de los videos de JW Library. Cuando el video inicia en pantalla, el volumen en la consola debe ajustarse suavemente al nivel adecuado.</li>
-            <li><b>Operador de Video y Acomodador de Zoom:</b> El acomodador informa al operador de video qué orador virtual está listo para que se le destaque la imagen justo a tiempo.</li>
-            <li><b>Acomodador de Zoom y Operador de Audio:</b> Sincronizan la apertura del micrófono del participante virtual cuando se le asigna un comentario o lectura.</li>
+            <li><b>Inicio de Videos:</b> Cuando el Operador de Video presiona la reproducción de un video en JW Library, el Operador de Audio debe bajar progresivamente la música previa o el canal del atril y abrir el canal de la computadora de video para recibir la pista de sonido sin saltos ni chasquidos.</li>
+            <li><b>Cierre de Videos:</b> Tan pronto finaliza un video, el Operador de Video cierra la proyección y el Operador de Audio abre de inmediato el micrófono del orador en el atril, evitando silencios incómodos o pérdida de las primeras palabras.</li>
+          </ul>
+
+          <h4>2. Sincronización entre Video y Acomodador de Zoom</h4>
+          <ul>
+            <li><b>Destacar Oradores Virtuales:</b> Antes de que dé inicio una parte a cargo de un orador conectado por Zoom, el Acomodador de Zoom debe localizar al usuario, verificar que su cámara esté encendida con el encuadre correcto y avisar al Operador de Video. El Acomodador aplicará la función <i>"Destacar para todos"</i> en Zoom de manera paralela con la señal enviada por la PC a las pantallas del Salón.</li>
+          </ul>
+
+          <h4>3. Sincronización entre Audio y Acomodador de Zoom</h4>
+          <ul>
+            <li><b>Gestión de Comentarios Virtuales:</b> Cuando el conductor solicita un comentario de una persona conectada por Zoom, el Acomodador de Zoom habilita el micrófono en la plataforma y el Operador de Audio se asegura de que el fader de entrada de la PC en la consola esté en el nivel calibrado para que el comentario se escuche con claridad impecable en el auditorio presencial.</li>
           </ul>
         `
       },
       'mod-objetivos-sesion': {
-        title: '🎯 Metas de Calidad, Respeto y Dignidad',
+        title: '🎯 Metas de Calidad, Respeto y Dignidad Espiritual',
         html: `
-          <h4>Estándares de Excelencia en el Servicio</h4>
+          <h4>1. Eliminación de Distracciones en Pantalla y Sistema</h4>
+          <p>El sistema de proyección del Salón del Reino es un canal para la enseñanza teocrática. Por lo tanto, se deben cumplir las siguientes normas de calidad visual:</p>
           <ul>
-            <li><b>Evitar Distracciones:</b> Ninguna ventana de configuración, notificación de chat o puntero de ratón errante debe proyectarse en las pantallas del Salón del Reino.</li>
-            <li><b>Volumen Uniforme:</b> Evitar altibajos bruscos entre oradores de la plataforma, videos de la organización y comentarios virtuales.</li>
-            <li><b>Puntualidad Absoluta:</b> Todos los ajustes y pruebas deben concluir a más tardar a los -5 minutos antes de la hora fijada.</li>
+            <li>Nunca debe aparecer en las pantallas del Salón el escritorio de Windows con íconos personales, menús contextuales al hacer clic derecho, notificaciones de aplicaciones ni el puntero del ratón desplazándose.</li>
+            <li>Está strictly prohibido usar el navegador de internet para buscar videos de forma improvisada durante la reunión. Todo el material multimedia debe estar predescargado en JW Library.</li>
           </ul>
+
+          <h4>2. Excelencia y Consistencia en la Calidad de Audio</h4>
+          <ul>
+            <li>El volumen dentro del Salón del Reino debe mantenerse a un nivel inteligible y confortable. No debe ser tan bajo que fuerce la audición de las personas mayores, ni tan alto que resulte atronador o distorsionado.</li>
+            <li>Se deben evitar picos bruscos de volumen al alternar entre la voz del atril, las pistas de música de las canciones y los videos reproducidos.</li>
+          </ul>
+
+          <h4>3. Puntualidad y Decoro Profesional</h4>
+          <p>Todas las pruebas técnicas, calibraciones de micrófonos y conexiones de oradores deben quedar resueltas antes de los 5 minutos previos al inicio de la reunión. La mesa de control debe permanecer ordenada, limpia y libre de alimentos o bebidas.</p>
         `
       },
       'rol-audio-consola': {
-        title: '🎛️ Operador de Audio: Manejo de Consola y Volumen (Carta S-261)',
+        title: '🎛️ Operador de Audio: Consola, Estructura de Ganancia y Ecualización',
         html: `
-          <h4>1. Estructura de Ganancia e Insumos</h4>
+          <h4>1. Calibración de la Ganancia de Entrada (Gain/Trim)</h4>
+          <p>La ganancia es el ajuste más importante de la consola de audio. Determina la cantidad de señal que entra desde el micrófono antes de ser procesada por el fader:</p>
           <ul>
-            <li><b>Ajuste de Gain/Trim:</b> Calibrar la ganancia de cada canal para que los picos de voz no entren en zona roja (distorsión). La voz debe marcar en verde/amarillo suave.</li>
-            <li><b>Ecualización Básica:</b> Aplicar corte de bajos (High-Pass Filter en 80Hz/100Hz) en los canales de voz para eliminar retumbos y roces de ropa.</li>
+            <li>Utilizar la función de pre-escucha (PFL o Solo) en cada canal activo mientras el orador habla con su volumen normal de voz.</li>
+            <li>Ajustar la perilla de <b>Gain/Trim</b> de modo que los LED del medidor de nivel marquen consistentemente en la zona verde y amarilla (entre -12 dB y -6 dB), **evitando en todo momento que toque la luz roja de CLIP**, la cual genera distorsión digital dañina.</li>
           </ul>
 
-          <h4>2. Control de Volumen en Vivo</h4>
+          <h4>2. Filtros y Ecualización de la Voz humana (EQ)</h4>
           <ul>
-            <li><b>Volumen Maestro (Main Fader):</b> Mantener el nivel de salida cómodo para el auditorio, ajustándolo según la cantidad de personas presentes.</li>
-            <li><b>Nivelación por Orador:</b> Compensar la diferencia de volumen entre oradores de voz suave y oradores de voz potente de manera anticipada.</li>
+            <li><b>Filtro de Paso Alto (HPF / Low Cut):</b> Activar el botón de corte de graves en todos los canales de voz de micrófonos (habitualmente corta frecuencias por debajo de 80 Hz a 100 Hz). Esto elimina retumbos mecánicos, golpes al tocar el atril y ruidos de manejo de cables.</li>
+            <li><b>Frecuencias Medias y Agudas:</b> Si una voz suena apagada o retumbante, atenuar ligeramente la zona de los 250 Hz - 400 Hz. Para mejorar la claridad de la dicción, se puede realzar muy levemente la zona de la presencia entre 2 kHz y 4 kHz.</li>
+          </ul>
+
+          <h4>3. Gestión de Faders en Vivo y Volumen Maestro</h4>
+          <ul>
+            <li>Mantener los faders individuales de los micrófonos activos cerca de la posición nominal (0 dB) y regular el volumen general mediante el Fader Maestro (Main Mix) de la consola.</li>
+            <li>Atender de forma proactiva la dinámica del orador: si un hermano tiene voz suave, subir el fader compensatoriamente; si el orador proyecta con mucha fuerza, bajar ligeramente el fader para mantener un nivel uniforme en la sala.</li>
           </ul>
         `
       },
       'rol-audio-mics': {
-        title: '🎤 Operador de Audio: Micrófonos Físicos y Sanitización (Carta S-261)',
+        title: '🎤 Operador de Audio: Gestión e Higiene de Micrófonos',
         html: `
-          <h4>1. Manejo de Micrófonos de Plataforma y Público</h4>
+          <h4>1. Control Preventivo de Baterías e Inalámbricos</h4>
           <ul>
-            <li><b>Verificación de Baterías:</b> Medir la carga de las baterías alcalinas o recargables a los -30 minutos. Nunca iniciar con baterías a menos del 50%.</li>
-            <li><b>Entregas a Acomodadores:</b> Asignar los micrófonos de mano identificados por números/colores a los acomodadores de pasillo.</li>
-            <li><b>Mute de Seguridad:</b> Mantener cerrados los canales de micrófonos que no estén en uso directo para evitar captar conversaciones privadas o ruidos de pasos.</li>
+            <li>Medir el voltaje o el indicador digital de carga de las baterías de todos los micrófonos inalámbricos (atril, plataforma y pasillos) a los -30 minutos.</li>
+            <li>Utilizar exclusivamente baterías de alta calidad (alcalinas o recargables de litio/NiMH de alto rendimiento). Si un indicador de batería muestra un 50% o menos al inicio de la sesión, **remplazar la batería inmediatamente**.</li>
+            <li>Comprobar que las frecuencias o canales de radiofrecuencia (RF) no presenten interferencias antes de entregar los equipos a los acomodadores.</li>
           </ul>
 
-          <h4>2. Sanitización Higiénica</h4>
+          <h4>2. Asignación y Operación con los Acomodadores de Pasillo</h4>
           <ul>
-            <li>Desinfectar las rejillas metálicas de los micrófonos con las toallitas aprobadas antes de la reunión y entre cambios de oradores si aplica.</li>
+            <li>Identificar claramente los micrófonos inalámbricos de mano con números o códigos de colores para saber exactamente qué canal de la consola corresponde a cada pasillo.</li>
+            <li>Mantener el fader del micrófono de pasillo completamente cerrado (**Mute/Fader abajo**) mientras el acomodador camina hacia el participante. Abrir el canal únicamente cuando el micrófono esté posicionado a la distancia correcta de la boca de la persona que va a comentar.</li>
+            <li>Cerrar el canal de inmediato en cuanto la persona termine su comentario, evitando captar respiraciones, ruidos de movimiento o conversaciones secundarias.</li>
+          </ul>
+
+          <h4>3. Protocolo de Limpieza e Higienización</h4>
+          <ul>
+            <li>Desinfectar las rejillas metálicas externas de los micrófonos antes de cada reunión utilizando toallitas impregnadas en solución alcohólica permitida que no dañe los componentes electrónicos.</li>
+            <li>Evitar pulverizar líquidos directamente sobre la cápsula del micrófono.</li>
           </ul>
         `
       },
       'rol-audio-integracion': {
-        title: '🔊 Operador de Audio: Integración con Zoom sin Ecos',
+        title: '🔊 Operador de Audio: Integración con Zoom sin Ecos (Mix-Minus / N-1)',
         html: `
-          <h4>Conexión y Retorno de Audio</h4>
+          <h4>1. Principio del Enrutamiento Mix-Minus (Auxiliar N-1)</h4>
+          <p>Para enviar el sonido del Salón del Reino hacia Zoom sin crear un bucle de retroalimentación acústica o ecos insoportables para las personas conectadas en casa, es imprescindible usar una mezcla auxiliar dedicada denominada **Mix-Minus** o **N-1**:</p>
+
+          <div class="info-box">
+            <b>¿En qué consiste el Mix-Minus?</b><br>
+            Consiste en enviar hacia la computadora de Zoom una mezcla que incluya **todos los micrófonos físicos del Salón del Reino** (atril, plataforma, pasillos) y el audio de la PC de video, **EXCLUYENDO únicamente el canal de audio que retorna desde Zoom**.
+          </div>
+
+          <h4>2. Configuración Física y Envíos Auxiliares</h4>
           <ul>
-            <li><b>Envío hacia la PC:</b> Enviar una mezcla de la consola (Auxiliar o Bus dedicado) hacia la entrada de micrófono de la PC que tiene Zoom. En esta mezcla deben ir todos los micrófonos del salón **menos la voz del propio Zoom**.</li>
-            <li><b>Retorno de Zoom a la Consola:</b> La salida de audio de la PC entra a un canal estereo de la consola para reproducirse en los altavoces del salón.</li>
-            <li><b>Evitar el Bucle (Feedback):</b> Asegurarse estrictamente de que la señal que regresa de Zoom NO se reenvíe al auxiliar que alimenta a Zoom, pues esto genera un eco insoportable para los asistentes en casa.</li>
+            <li><b>Salida Auxiliar (Aux Send) de la Consola ➔ Entrada de Audio de la PC (Zoom):</b> Configurar la salida del bus auxiliar en modo <i>Post-Fader</i> (o Pre-Fader según el diseño de la consola) y subir las perillas auxiliares de todos los micrófonos presenciales. Mantener la perilla auxiliar del canal de Zoom en CERO.</li>
+            <li><b>Salida de Audio de la PC (Zoom) ➔ Canal de Entrada en Consola:</b> Conectar la salida de audio de la computadora a un canal estéreo o de línea de la consola para que el sonido de los oradores virtuales se escuche a través de los altavoces del Salón del Reino.</li>
+          </ul>
+
+          <h4>3. Ajuste de Procesamiento de Sonido en Zoom</h4>
+          <ul>
+            <li>En la configuración de audio de Zoom de la PC principal, seleccionar los dispositivos de entrada y salida correctos (interfaz de audio USB o tarjetas dedicadas).</li>
+            <li>Desactivar los efectos de ganancia automática de Zoom y seleccionar la opción de procesamiento de voz adecuado para evitar que el software comprima o altere la calidad de la mezcla proveniente de la consola.</li>
           </ul>
         `
       },
       'rol-video-pantallas': {
-        title: '🖥️ Operador de Video: Configuración de Pantallas en Windows (Carta S-260)',
+        title: '🖥️ Operador de Video: Configuración de Pantallas en Windows',
         html: `
-          <h4>1. Ajuste del Escritorio de Windows</h4>
+          <h4>1. Configuración del Modo de Pantallas Extendidas</h4>
+          <p>El sistema informático debe estar configurado para trabajar con dos entornos de pantalla independientes:</p>
           <ul>
-            <li>Presionar la combinación <b>Windows + P</b> y seleccionar la opción <b>"Extender"</b>.</li>
-            <li><b>Monitor 1 (Principal):</b> Pantalla del operador donde se ubican los paneles de control de JW Library, Zoom y carpetas.</li>
-            <li><b>Monitor 2 (Secundario/Proyector):</b> Entrada de proyectores o pantallas TV del Salón del Reino. Debe mantenerse limpio de íconos o ventanas emergentes.</li>
+            <li>Presionar la combinación de teclas <b>Windows + P</b> y seleccionar estrictamente la opción <b>"Extender"</b> (nunca seleccionar "Duplicar").</li>
+            <li><b>Pantalla 1 (Monitor de Control):</b> Es la pantalla física ubicada frente al operador de video. En ella se gestionan las ventanas de JW Library, el panel de control de Zoom, exploradores de archivos y herramientas del sistema.</li>
+            <li><b>Pantalla 2 (Salida a Proyectores/TVs):</b> Es la señal enviada hacia las pantallas del auditorio. Debe configurarse a la resolución nativa de los proyectores (por ejemplo, 1920x1080 Full HD a 60Hz).</li>
           </ul>
 
-          <h4>2. Fondo de Pantalla Neutro</h4>
-          <p>El fondo de pantalla del escritorio secundario debe ser neutro o llevar la imagen oficial autorizada por el cuerpo de ancianos.</p>
+          <h4>2. Limpieza Visual y Ocultamiento del Cursor</h4>
+          <ul>
+            <li>Mover las ventanas ejecutables únicamente a la pantalla principal de trabajo.</li>
+            <li>Arrastrar el cursor del ratón fuera de la pantalla extendida cuando se esté proyectando una imagen fija o un video, de modo que el puntero no quede visible sobre el contenido teocrático.</li>
+          </ul>
+
+          <h4>3. Desactivación de Notificaciones del Sistema Operativo</h4>
+          <ul>
+            <li>Activar la función <b>"Asistente de concentración"</b> o el modo <b>"No molestar"</b> en Windows para impedir que emerjan avisos de actualizaciones, mensajes de aplicaciones, alarmas o alertas de antivirus durante la reunión.</li>
+          </ul>
         `
       },
       'rol-video-jwlibrary': {
-        title: '🎬 Operador de Video: JW Library y Videos HD (Carta S-179)',
+        title: '🎬 Operador de Video: JW Library y Reproducción HD',
         html: `
-          <h4>1. Configuración de JW Library</h4>
+          <h4>1. Configuración de Pantalla Secundaria en JW Library</h4>
           <ul>
-            <li>Ir a la configuración de JW Library y activar la casilla <i>"Reproducir el video en otra pantalla"</i>.</li>
-            <li>Seleccionar como calidad de descarga predeterminada <b>720p (HD)</b>.</li>
+            <li>Abrir JW Library, ir al menú de <b>Configuración</b> y activar la casilla <i>"Reproducir el video en otra pantalla"</i> (o Pantalla Secundaria).</li>
+            <li>Verificar que al iniciar la reproducción de cualquier contenido multimedia, este se abra de forma automática a pantalla completa en la salida extendida (Pantalla 2) sin mostrar barras de reproducción ni marcos de ventana.</li>
           </ul>
 
-          <h4>2. Flujo de Lanzamiento de Videos</h4>
+          <h4>2. Gestión de Descargas y Calidad de Video</h4>
           <ul>
-            <li>Tener preparados en la pestaña de la reunión todos los medios audiovisuales asignados para ese día.</li>
-            <li>Lanzar el video en el segundo exacto en que el orador o conductor pronuncie la frase de introducción.</li>
-            <li>Verificar que al pausar o finalizar el video, la pantalla vuelva suavemente a la imagen del Texto del Año.</li>
+            <li>Descargar todo el material audiovisual indicado en la guía de la reunión con suficiente antelación (durante la preparación previa).</li>
+            <li>Establecer la calidad de descarga predeterminada en <b>720p (HD)</b> o <b>1080p (Full HD)</b>. Nunca utilizar resoluciones bajas (240p o 360p) que comprometan la dignidad visual en las pantallas grandes del salón.</li>
+          </ul>
+
+          <h4>3. Sincronización Inmediata con el Orador</h4>
+          <ul>
+            <li>Tener seleccionada previamente la pestaña correspondiente a la reunión del día dentro de JW Library con los videos en pausa listos para su ejecución.</li>
+            <li>Estar atento a las palabras de paso del orador en la plataforma para hacer clic en reproducir en el instante exacto en que se introduzca el video.</li>
           </ul>
         `
       },
       'rol-video-musica': {
-        title: '🎵 Operador de Video: Transmisión de Música y Texto del Año (Carta S-179)',
+        title: '🎵 Operador de Video: Proyección de Música y Texto del Año',
         html: `
-          <h4>Proyección Visual y Pistas Musicales</h4>
+          <h4>1. Procedimiento de Proyección Previa y Posterior</h4>
+          <p>De acuerdo con la Carta S-179, durante los 15 minutos previos al inicio de la reunión y al concluir la oración final, se debe mantener una atmósfera visual y auditiva ordenada:</p>
           <ul>
-            <li><b>Formato de Música:</b> Utilizar únicamente archivos de audio (MP3 o M4A) de las melodías del Reino.</li>
-            <li><b>Imagen Fija:</b> Proyectar en la pantalla extendida la imagen del Texto del Año en alta resolución.</li>
-            <li><b>Operación:</b> Al reproducir la música de audio en segundo plano, la imagen del Texto del Año permanecerá visible y firme en las pantallas del Salón, ofreciendo una apariencia ordenada y profesional.</li>
+            <li><b>Componente Visual:</b> Proyectar en la pantalla extendida (Pantalla 2) la imagen oficial de alta resolución con el Texto del Año en curso.</li>
+            <li><b>Componente Auditivo:</b> Reproducir la lista de reproducción oficial de las melodías del Reino en formato de audio de alta calidad (MP3 o M4A).</li>
+          </ul>
+
+          <h4>2. Control de la Reproducción y Desvanecimiento</h4>
+          <ul>
+            <li>Utilizar un reproductor multimedia independiente o la sección de audio de JW Library para la música, asegurando que la imagen del Texto del Año permanezca fija e inamovible en las pantallas.</li>
+            <li>A los <b>-1 minuto</b> antes de iniciar la reunión, el Operador de Audio desvanecerá el volumen de la música de forma suave y paulatina hasta silenciarla por completo, momento en el cual el presidente de la reunión ocupará el atril.</li>
           </ul>
         `
       },
       'rol-zoom-espera': {
-        title: '🛡️ Acomodador de Zoom: Sala de Espera y Verificación (Carta S-144)',
+        title: '🛡️ Acomodador de Zoom: Sala de Espera y Filtros de Seguridad',
         html: `
-          <h4>1. Protocolo de Admisión</h4>
+          <h4>1. Verificación Estricta de la Sala de Espera (Carta S-144)</h4>
           <ul>
-            <li>Mantener activa la opción **Sala de Espera** durante toda la sesión.</li>
-            <li>Admitir únicamente a usuarios cuyo nombre y apellido sean reconocibles como miembros de la congregación u oradores autorizados.</li>
+            <li>Asegurarse de que la función <b>"Sala de espera"</b> esté habilitada en las opciones de seguridad de la cuenta de Zoom y permanezca activa durante toda la sesión.</li>
+            <li>Revisar minuciosamente la lista de usuarios en espera antes de otorgar el acceso a la reunión.</li>
           </ul>
 
-          <h4>2. Dispositivos sin Identificar</h4>
+          <h4>2. Protocolo de Identificación y Renombrado de Dispositivos</h4>
           <ul>
-            <li>Si aparece un usuario registrado como "iPad", "Galaxy A50" o "Usuario", enviarle un mensaje privado por la Sala de Espera para solicitar su nombre antes de admitirlo.</li>
-            <li>Si el usuario no responde o resulta desconocido, **NO admitirlo** en la reunión.</li>
+            <li>Admitir únicamente a aquellos usuarios cuyo nombre y apellido coincidan de forma clara con miembros conocidos de la congregación o invitados confirmados.</li>
+            <li><b>Manejo de nombres genéricos:</b> Si un participante intenta ingresar con un nombre genérico de dispositivo (por ejemplo: <i>"iPhone de Usuario"</i>, <i>"Galaxy Tab"</i>, <i>"PC-12"</i>), el Acomodador de Zoom debe utilizar la función de mensaje de chat privado de la Sala de Espera para solicitarle que proporcione su nombre y apellido completos.</li>
+            <li>Una vez verificado el usuario, el Acomodador de Zoom procederá a cambiarle el nombre en la plataforma antes de admitirlo o inmediatamente al ingresar (ejemplo: <i>"Familia Pérez"</i> o <i>"Hermano Juan López"</i>).</li>
+            <li><b>Denegación de ingreso:</b> Si una persona no responde a los mensajes de verificación o su identidad no puede ser confirmada, **NO se le debe admitir** bajo ningún concepto.</li>
           </ul>
         `
       },
       'rol-zoom-silencio': {
-        title: '🔇 Acomodador de Zoom: Control de Micrófonos y Comentarios (Carta S-178)',
+        title: '🔇 Acomodador de Zoom: Control de Micrófonos y Comentarios',
         html: `
-          <h4>1. Silenciamiento Inicial y Control</h4>
+          <h4>1. Bloqueo de Micrófonos al Inicio de la Sesión</h4>
           <ul>
-            <li>A los -1 minuto antes de comenzar, hacer clic en <b>"Silenciar a todos"</b>.</li>
-            <li><b>Acción Crucial:</b> Desmarcar inmediatamente la casilla <i>"Permitir que los participantes reactiven su propio micrófono"</i>.</li>
+            <li>A los <b>-1 minuto</b> antes del comienzo del programa, el Acomodador de Zoom debe hacer clic en la opción <b>"Silenciar a todos"</b> en el panel de participantes.</li>
+            <li><b>Acción Obligatoria de Seguridad:</b> Desmarcar la casilla que dice <i>"Permitir que los participantes reactiven su propio micrófono"</i>. Esto evita interrupciones accidentalmente o aperturas involuntarias de micrófonos durante las oraciones o discursos.</li>
           </ul>
 
-          <h4>2. Paso de Comentarios del Público</h4>
+          <h4>2. Gestión de Comentarios del Público Virtual (Carta S-178)</h4>
           <ul>
-            <li>Cuando el conductor asigne un comentario a un participante en Zoom, buscar al usuario en la lista y solicitar la reactivación de micrófono.</li>
-            <li><b>REGLA S-178:</b> Mantener la transmisión **solo en AUDIO**. No hacer clic en "Destacar para todos" cuando se trate de comentarios del público desde sus casas.</li>
+            <li>Cuando el conductor de la parte asigne la palabra a un participante en Zoom que ha levantado la mano digital, el Acomodador de Zoom buscará el usuario y le enviará la solicitud de <b>"Solicitar reactivar micrófono"</b>.</li>
+            <li><b>REGLA CRUCIAL DE CARTA S-178:</b> Los comentarios de la congregación desde sus casas deben transmitirse **ÚNICAMENTE EN AUDIO**. Queda prohibido aplicar la función "Destacar para todos" o proyectar la imagen de la cámara del usuario que está comentando desde Zoom en las pantallas del Salón del Reino.</li>
           </ul>
         `
       },
       'rol-zoom-asistencia': {
-        title: '📊 Acomodador de Zoom: Conteo de Asistencia y Seguridad (Carta S-144)',
+        title: '📊 Acomodador de Zoom: Conteo de Asistencia y Protocolo S-144',
         html: `
-          <h4>1. Registro Exacto de Asistentes</h4>
+          <h4>1. Procedimiento de Conteo Físico de Asistentes Virtuales</h4>
           <ul>
-            <li>Recorrer las cámaras encendidas para contar el número real de personas presentes en cada pantalla conectada.</li>
-            <li>Sumar las conexiones con cámara apagada como 1 persona (a menos que se haya verificado previamente un número mayor).</li>
-            <li>Entregar la cifra final de conexiones virtuales al Secretario o al operador principal.</li>
+            <li>Recorrer sistemáticamente las cuadrículas de la vista de galería en Zoom durante la segunda mitad del discurso público o durante la primera parte de la reunión de entre semana.</li>
+            <li>Contar la cantidad real de rostros o personas visibles detrás de cada cámara conectada (por ejemplo, si en una pantalla se observan 3 miembros de una familia, registrar 3 asistentes).</li>
+            <li>Para aquellas conexiones que mantengan la cámara apagada, registrar únicamente <b>1 persona</b> (a menos que se sepa formalmente que hay un matrimonio o grupo presente en esa conexión).</li>
           </ul>
 
-          <h4>2. Seguridad en Caso de Interrupciones (Carta S-144)</h4>
-          <ul>
-            <li>Si un usuario emite ruidos inapropiados o muestra imágenes indecorosas, apagar su video o silenciar su micrófono de forma inmediata.</li>
-            <li>Si la interrupción es grave o maliciosa, usar la opción <b>"Eliminar participante"</b> e informar de inmediato al Coordinador del Cuerpo de Ancianos.</li>
-          </ul>
+          <h4>2. Protocolo de Respuesta ante Incidentes de Seguridad (Carta S-144)</h4>
+          <div class="warning-box">
+            <b>PLAN DE CONTINGENCIA INMEDIATO:</b> Si un participante conectado realiza un acto de indisciplina, emite ruidos inapropiados, comparte pantalla no autorizada o muestra imágenes indecorosas:
+          </div>
+          <ol>
+            <li><b>Apagado Inmediato:</b> Hacer clic instantáneamente en <i>"Detener video"</i> y <i>"Silenciar"</i> sobre el participante infractor.</li>
+            <li><b>Expulsión:</b> Si la interrupción es maliciosa o persistente, seleccionar la opción <b>"Eliminar participante"</b> de la lista de Zoom (esto impedirá que el usuario vuelva a ingresar a la sesión).</li>
+            <li><b>Suspensión Temporal de Actividades de Participantes:</b> Si ocurren múltiples ataques simultáneos, usar el botón de seguridad de Zoom y presionar <i>"Suspender actividades de los participantes"</i>, lo cual silencia micrófonos, bloquea videos y cierra el chat de inmediato.</li>
+            <li><b>Notificación:</b> Informar del incidente de forma discreta al Coordinador del Cuerpo de Ancianos finalizada la reunión.</li>
+          </ol>
         `
       },
       's178-encuadre-luz': {
-        title: '📐 Directrices para Oradores: Encuadre e Iluminación (Carta S-178)',
+        title: '📐 Directrices para Oradores: Encuadre, Posición e Iluminación (Carta S-178)',
         html: `
-          <h4>1. Orientación y Encuadre de Cámara</h4>
+          <h4>1. Orientación y Composición de la Imagen</h4>
           <ul>
-            <li><b>Orientación:</b> La cámara del teléfono, tablet o laptop debe estar fija en posición **horizontal**.</li>
-            <li><b>Plano Recomendado:</b> Plano medio horizontal (cortando justo a la altura del pecho y dejando un margen de 5 a 10 cm arriba de la cabeza).</li>
-            <li><b>Altura de la Lente:</b> Colocar la cámara a la misma altura de los ojos (usar libros o soporte si es necesario). Evitar tomas picadas desde abajo.</li>
+            <li><b>Orientación Horizontal Obligatoria:</b> Los teléfonos móviles, tablets o computadoras portátiles deben colocarse obligatoriamente en posición **horizontal (relación de aspecto 16:9)**. Queda totalmente prohibido realizar intervenciones con el teléfono en posición vertical.</li>
+            <li><b>Plano Medio Equilibrado:</b> El encuadre de la cámara debe ser un plano medio (desde la mitad del pecho hacia arriba), permitiendo que los gestos de las manos y el rostro se aprecien con naturalidad. Dejar un espacio de seguridad (aire) de aproximadamente 5 a 10 cm entre la parte superior de la cabeza y el borde superior del marco.</li>
+            <li><b>Altura de la Lente:</b> La cámara debe estar alineada a la misma altura de los ojos del orador. Se deben utilizar soportes, trípodes o libros para elevar el dispositivo, evitando tomas picadas desde abajo (que distorsionan el rostro) o tomas cenitales.</li>
           </ul>
 
-          <h4>2. Iluminación y Fondo</h4>
+          <h4>2. Iluminación y Neutralidad del Fondo</h4>
           <ul>
-            <li>La luz principal debe dar directamente de frente al rostro.</li>
-            <li>Evitar estar de espaldas a ventanas luminosas o focos potentes (contraluz).</li>
-            <li>El fondo debe ser neutro, limpio, bien ordenado y sin elementos que distraigan la atención.</li>
+            <li><b>Luz Frontal Directa:</b> La fuente principal de luz (ventana o lámpara) debe iluminar de frente el rostro del orador. Evitar ponerse de espaldas a ventanas luminosas o focos potentes (contraluz), lo cual convierte al orador en una silueta oscura.</li>
+            <li><b>Fondo Decoroso y Sobrio:</b> El fondo visible detrás del orador debe estar perfectamente limpio, ordenado y ser completamente neutro (paredes lisas, estanterías ordenadas). Se deben eliminar objetos personales distractores o ropa colgada. No utilizar fondos virtuales artificiales o de fantasía.</li>
           </ul>
         `
       },
       's178-mic-posicion': {
-        title: '🎙️ Directrices para Oradores: Microfonía Personal (Carta S-178)',
+        title: '🎙️ Directrices para Oradores: Microfonía y Acústica Doméstica (Carta S-178)',
         html: `
-          <h4>Uso Correcto del Micrófono en Casa</h4>
+          <h4>1. Ubicación Correcta del Micrófono</h4>
           <ul>
-            <li><b>Distancia Recomendada:</b> Si se utilizan auriculares con micrófono incorporado o micrófono de solapa, situarlo a una distancia fija de **3 a 5 cm** de la boca.</li>
-            <li><b>Prevención de Roce:</b> Asegurarse de que el cable del micrófono no roce con la corbata, solapa o camisa durante la lectura.</li>
-            <li><b>Acondicionamiento del Entorno:</b> Cerrar ventanas y puertas del cuarto para evitar ladridos, tráfico o ruidos domésticos en el audio.</li>
+            <li><b>Distancia Fija de Captación:</b> Cuando se utilicen auriculares con micrófono incorporado, manos libres o micrófonos de solapa (corbatero), la cápsula receptora debe situarse a una distancia fija de <b>3 a 5 cm de la boca</b>.</li>
+            <li><b>Alineación de Solapa:</b> Enganchar el micrófono de solapa en el centro de la prenda (a la altura del esternón) apuntando hacia arriba.</li>
+            <li><b>Prevención de Ruidos Mecánicos:</b> Asegurarse de que el cable del micrófono no roce contra la corbata, la solapa de la chaqueta, botones o joyas, ya que cualquier fricción genera chasquidos estridentes en la transmisión.</li>
+          </ul>
+
+          <h4>2. Acondicionamiento Acústico de la Habitación</h4>
+          <ul>
+            <li>Realizar la asignación en una habitación cerrada, libre de ecos secos o reverberaciones (las habitaciones con cortinas, alfombras o muebles absorben el eco de forma eficiente).</li>
+            <li>Cerrar herméticamente puertas y ventanas externas para prevenir la filtración de ladridos de perros, tráfico vehicular, vendedores o ruidos domésticos familiares durante la intervención.</li>
           </ul>
         `
       },
       's178-partes-dobles': {
-        title: '🎭 Directrices para Asignaciones Dobles (Carta S-178)',
+        title: '🎭 Directrices para Asignaciones Dobles y Demostraciones (Carta S-178)',
         html: `
-          <h4>Regla Obligatoria para Demostraciones</h4>
+          <h4>Regla de Uniformidad Teocrática de Plataforma</h4>
           <div class="warning-box">
-            <b>PROHIBIDO FORMATO MIXTO:</b> Queda terminantemente prohibido realizar demostraciones donde un participante esté en el Salón del Reino y el otro participante esté por Zoom.
+            <b>PROHIBICIÓN STRICTA DE FORMATO MIXTO:</b> La Carta S-178 prohibe taxativamente que en una demostración o asignación de dos o más participantes, un participante esté ubicado de forma presencial en la plataforma del Salón del Reino y el otro participante se encuentre conectado de forma remota a través de Zoom.
           </div>
-          <h4>Opciones Permitidas:</h4>
+
+          <h4>Opciones Únicas Permitidas para la Presentación:</h4>
           <ol>
-            <li><b>Opción A (Presencial):</b> Ambos participantes presentan la demostración juntos desde la plataforma del Salón del Reino.</li>
-            <li><b>Opción B (Virtual):</b> Ambos participantes se conectan a través de Zoom (ya sea desde la misma casa o desde dos conexiones de Zoom destacadas simultáneamente).</li>
+            <li><b>Modalidad 100% Presencial:</b> Todos los participantes asignados a la demostración deben estar físicamente presentes en el Salón del Reino y efectuar la parte juntos desde la plataforma.</li>
+            <li><b>Modalidad 100% Virtual:</b> Todos los participantes asignados deben conectarse a través de Zoom (ya sea situándose juntos frente a la misma cámara en una casa o conectándose desde dos ubicaciones remotas distintas, en cuyo caso el Acomodador de Zoom destacará ambas cámaras simultáneamente mediante la función de multidestacado).</li>
           </ol>
         `
       },
       'check-30min-unificado': {
-        title: '⏰ Checklist Unificado: -30 Minutos Antes',
+        title: '⏰ Checklist Unificado: -30 Minutos Antes del Inicio',
         html: `
-          <h4>Tareas Concurrentes por Asignación:</h4>
+          <h4>Secuencia de Tareas Concurrentes por Puesto de Trabajo:</h4>
           <ul>
-            <li><b>Audio:</b> Encender consola, amplificadores, verificar carga de baterías en micrófonos inalámbricos y desinfectar rejillas.</li>
-            <li><b>Video/PC:</b> Encender computadora, verificar conexión por cable Ethernet, ajustar Windows en "Extender", abrir JW Library y VLC.</li>
-            <li><b>Zoom:</b> Iniciar la sesión de videoconferencia como Hospedador/Cofitrión y verificar que la Sala de Espera esté activa.</li>
+            <li><b>Operador de Audio:</b>
+              <ul>
+                <li>Encender la consola de mezclas, el procesador de audio y los amplificadores del salón.</li>
+                <li>Verificar el estado de carga de las baterías de todos los micrófonos inalámbricos (atril, plataforma y pasillos). Reemplazar si marcan ≤50%.</li>
+                <li>Desinfectar las rejillas externas de los micrófonos con toallitas de alcohol aprobadas.</li>
+              </ul>
+            </li>
+            <li><b>Operador de Video / PC:</b>
+              <ul>
+                <li>Encender la computadora principal y los proyectores o pantallas de TV del Salón.</li>
+                <li>Verificar que la red de la PC esté conectada mediante **cable Ethernet directo**.</li>
+                <li>Presionar <b>Windows + P</b> y seleccionar la opción <b>"Extender"</b>.</li>
+                <li>Abrir JW Library, verificar la salida de pantalla secundaria y cargar los videos en HD de la reunión.</li>
+              </ul>
+            </li>
+            <li><b>Acomodador de Zoom:</b>
+              <ul>
+                <li>Iniciar sesión en la cuenta oficial de Zoom e iniciar la reunión como Hospedador/Cofitrión.</li>
+                <li>Verificar que la **Sala de espera** esté activada en la barra de seguridad.</li>
+                <li>Verificar que el modo de dos monitores de Zoom esté funcionando correctamente en la PC de control.</li>
+              </ul>
+            </li>
           </ul>
         `
       },
       'check-25min-unificado': {
-        title: '⏰ Checklist Unificado: -25 Minutos Antes',
+        title: '⏰ Checklist Unificado: -25 Minutos Antes del Inicio',
         html: `
-          <h4>Tareas Concurrentes por Asignación:</h4>
+          <h4>Secuencia de Tareas Concurrentes por Puesto de Trabajo:</h4>
           <ul>
-            <li><b>Zoom y Audio:</b> Admitir a oradores, asignados y lectores que participan desde casa. Realizar prueba individual de voz.</li>
-            <li><b>Video y Zoom:</b> Verificar que los oradores virtuales cumplan con el encuadre horizontal, luz frontal y altura de cámara (Carta S-178).</li>
-            <li><b>Audio Presencial:</b> Entregar los micrófonos de mano inalámbricos a los acomodadores de los pasillos del salón.</li>
+            <li><b>Audio y Zoom (Coordinado):</b>
+              <ul>
+                <li>Admitir en Zoom a los oradores, lectores y participantes virtuales asignados para el programa.</li>
+                <li>Realizar la prueba individual de sonido de los participantes virtuales para ajustar el canal de retorno de Zoom en la consola sin generar eco.</li>
+              </ul>
+            </li>
+            <li><b>Video y Zoom (Coordinado):</b>
+              <ul>
+                <li>Verificar la cámara de los oradores virtuales: comprobar que usen orientación horizontal (16:9), encuadre medio, luz de frente y lente a la altura de los ojos (Carta S-178).</li>
+              </ul>
+            </li>
+            <li><b>Audio Presencial:</b>
+              <ul>
+                <li>Entregar los micrófonos inalámbricos de mano numerados a los hermanos acomodadores asignados a los pasillos del salón.</li>
+                <li>Realizar prueba de voz rápida con el hermano que presidirá la reunión y el orador del atril.</li>
+              </ul>
+            </li>
           </ul>
         `
       },
       'check-15min-unificado': {
-        title: '⏰ Checklist Unificado: -15 Minutos Antes',
+        title: '⏰ Checklist Unificado: -15 Minutos Antes del Inicio',
         html: `
-          <h4>Tareas Concurrentes por Asignación:</h4>
+          <h4>Secuencia de Tareas Concurrentes por Puesto de Trabajo:</h4>
           <ul>
-            <li><b>Video:</b> Proyectar la imagen del Texto del Año en las pantallas del Salón del Reino.</li>
-            <li><b>Audio:</b> Reproducir las pistas de audio de las melodías del Reino en volumen suave de fondo.</li>
-            <li><b>Zoom:</b> Admitir progresivamente a los hermanos en Sala de Espera verificando nombres conocidos.</li>
+            <li><b>Operador de Video:</b> Proyectar en la salida extendida a las pantallas del Salón la imagen oficial del **Texto del Año**.</li>
+            <li><b>Operador de Audio:</b> Iniciar la reproducción de las pistas de audio con las melodías del Reino en un nivel de fondo suave (música ambiental de bienvenida).</li>
+            <li><b>Acomodador de Zoom:</b> Comenzar a admitir progresivamente a los miembros de la congregación desde la Sala de Espera, verificando nombres y renombrando dispositivos genéricos.</li>
           </ul>
         `
       },
       'check-1min-unificado': {
-        title: '⏰ Checklist Unificado: -1 Minuto Antes',
+        title: '⏰ Checklist Unificado: -1 Minuto Antes del Inicio',
         html: `
-          <h4>Tareas Concurrentes por Asignación:</h4>
+          <h4>Secuencia de Tareas Concurrentes por Puesto de Trabajo:</h4>
           <ul>
-            <li><b>Audio y Video:</b> Desvanecer suavemente la música de fondo hasta detenerla por completo.</li>
-            <li><b>Zoom:</b> Hacer clic en "Silenciar a todos" y desmarcar "Permitir que los participantes reactiven su propio micrófono".</li>
-            <li><b>General:</b> Dar la señal al Presidente de la Reunión para que ocupe el atril e inicie el programa.</li>
+            <li><b>Operador de Audio:</b> Realizar un desvanecimiento suave (fade out) de la música ambiental hasta silenciarla completamente.</li>
+            <li><b>Acomodador de Zoom:</b> Hacer clic en <b>"Silenciar a todos"</b> y desmarcar la casilla <i>"Permitir que los participantes reactiven su propio micrófono"</i>.</li>
+            <li><b>Operador de Video:</b> Confirmar que las pantallas muestran la imagen fija limpia o la toma abierta de la cámara de la plataforma.</li>
+            <li><b>Coordinación:</b> Hacer una señal discreta al presidente de la reunión para indicar que todo el sistema técnico está calibrado y listo para comenzar.</li>
           </ul>
         `
       },
       'check-cierre-unificado': {
-        title: '⏰ Checklist Unificado: Cierre y Post-Reunión',
+        title: '⏰ Checklist Unificado: Cierre y Apagado Post-Reunión',
         html: `
-          <h4>Procedimiento de Desconexión:</h4>
+          <h4>Secuencia de Desconexión y Cierre de Sistemas:</h4>
           <ol>
-            <li><b>Inmediatamente tras la oración final:</b> Apagar la cámara de la plataforma del Salón en Zoom. La audiencia virtual no debe ver el movimiento del público en el salón.</li>
-            <li><b>Zoom:</b> Mantener la sala virtual abierta el tiempo dispuesto por los ancianos para el saludo entre los hermanos.</li>
-            <li><b>Audio y Video:</b> Apagar amplificadores de sonido, consola de mezclas, proyectores y computadora principal. Guardar micrófonos en sus estuches de protección.</li>
+            <li><b>Inmediatamente tras la oración final:</b> El Operador de Video/Zoom apagará la cámara principal de la plataforma. La audiencia conectada por Zoom no debe ver el movimiento informal del auditorio dentro del salón.</li>
+            <li><b>Video:</b> Colocar la imagen del Texto del Año en las pantallas del Salón.</li>
+            <li><b>Audio:</b> Iniciar la reproducción de la música de fondo de las melodías del Reino durante la salida del público.</li>
+            <li><b>Zoom:</b> Mantener la sala de Zoom abierta durante el tiempo estipulado por el Cuerpo de Ancianos para que los hermanos en sus casas puedan saludarse.</li>
+            <li><b>Apagado Final:</b> Una vez concluido el tiempo social, cerrar la sesión de Zoom, apagar proyectores/TVs, apagar la consola de audio y amplificadores, retirar las baterías de los micrófonos de mano y guardar los equipos en sus estuches bajo llave.</li>
           </ol>
         `
       },
       'check-durante-reunion': {
         title: '⏱️ Flujo de Trabajo Continuo Durante la Reunión',
         html: `
-          <h4>Acciones Coordinadas en Vivo:</h4>
+          <h4>Operaciones Sincronizadas en Vivo durante el Programa:</h4>
           <ul>
-            <li><b>Para Discursos/Partes en Plataforma:</b> El operador de video enfoca la cámara amplia de la plataforma y el de audio mantiene abierto el micrófono del atril.</li>
-            <li><b>Para Partes desde Zoom:</b> El acomodador de Zoom destaca el video del orador virtual y el operador de audio regula la señal recibida de la PC hacia los altavoces.</li>
-            <li><b>Para Comentarios del Público desde Zoom:</b> Se habilita el micrófono del participante en Zoom pero **NO se proyecta su video** en las pantallas del salón (pasa solo en formato de AUDIO conforme a la Carta S-178).</li>
+            <li><b>Para Discursos en la Plataforma del Salón:</b> El Operador de Video mantiene la cámara amplia o cerrada del atril en pantalla; el Operador de Audio mantiene abierto el micrófono del atril modulando según el orador.</li>
+            <li><b>Para Lecturas de la Biblia / Atalayas:</b> El Operador de Audio abre el micrófono del lector del atril o del estrado secundario tan pronto es introducido por el conductor.</li>
+            <li><b>Para Videos de la Reunión:</b>
+              <ul>
+                <li>El Operador de Video lanza el video en JW Library sincronizado con la frase de paso.</li>
+                <li>El Operador de Audio baja el micrófono del atril y abre el canal estereo de la computadora.</li>
+                <li>Al finalizar el video, el Operador de Video cierra la ventana de reproducción y el Operador de Audio reabre el micrófono del atril.</li>
+              </ul>
+            </li>
+            <li><b>Para Comentarios desde Zoom:</b>
+              <ul>
+                <li>El Acomodador de Zoom habilita el micrófono del hermano seleccionado.</li>
+                <li>El Operador de Audio asegura el retorno del canal de Zoom en la consola.</li>
+                <li><b>RECORDATORIO:</b> No se proyecta el video del comentarista de Zoom en las pantallas del Salón (pasa solo en formato de AUDIO conforme a la Carta S-178).</li>
+              </ul>
+            </li>
           </ul>
         `
       },
       'check-emergencias': {
-        title: '🚨 Guía de Solución Rápida ante Contingencias',
+        title: '🚨 Matriz de Solución de Problemas Técnicos en Vivo',
         html: `
-          <h4>1. Si se pierde el audio proveniente de Zoom:</h4>
-          <p>Verificar rápidamente en la PC si la salida de sonido de Windows cambió por error de dispositivo (debe estar seleccionada la interfaz conectada a la consola).</p>
-          
-          <h4>2. Si un orador virtual pierde la conexión a Internet:</h4>
-          <p>El Presidente de la Reunión dará paso al sustituto presencial asignado mientras el acomodador de Zoom atiende en privado la reconexión del participante.</p>
+          <h4>1. Si el sonido de Zoom deja de escucharse en el Salón del Reino:</h4>
+          <ul>
+            <li>Verificar en el panel de control de sonido de Windows si el dispositivo de reproducción cambió por error a los altavoces internos de la PC. Cambiarlo de nuevo a la interfaz/salida conectada a la consola.</li>
+            <li>Verificar que el fader del canal de entrada de la PC en la consola no haya sufrido un corte accidental o botón Mute activado.</li>
+          </ul>
 
-          <h4>3. Si se proyecta una ventana no deseada en el salón:</h4>
-          <p>Oprimir de inmediato la tecla **Windows + P** y cambiar temporalmente a "Solo pantalla de PC" mientras se corrige el problema en el escritorio.</p>
+          <h4>2. Si un orador virtual pierde su conexión de Internet a mitad del discurso:</h4>
+          <ul>
+            <li>El Acomodador de Zoom notificará inmediatamente al presidente de la reunión mediante una seña discreta.</li>
+            <li>El Presidente de la reunión dará paso al hermano sustituto presencial previamente asignado para ocupar el atril, mientras el Acomodador de Zoom gestiona en privado la reconexión del orador remoto.</li>
+          </ul>
+
+          <h4>3. Si se proyecta por error una ventana personal o el escritorio en el salón:</h4>
+          <ul>
+            <li>Presionar inmediatamente la combinación <b>Windows + P</b> y seleccionar temporalmente <i>"Solo pantalla de equipo"</i> para cortar la señal secundaria enviada a los proyectores mientras se restaura la ventana correcta.</li>
+          </ul>
+
+          <h4>4. Si un participante de Zoom abre su micrófono emitiendo ruidos perturbadores:</h4>
+          <ul>
+            <li>El Acomodador de Zoom presionará inmediatamente el botón global <b>"Silenciar a todos"</b> confirmando que la opción de autoreactivación permanezca desmarcada.</li>
+          </ul>
         `
       }
     };
 
-    // Funciones Modal
     function openDetail(id) {
       const data = detailData[id];
       if (!data) return;
@@ -895,7 +1176,6 @@
       document.getElementById('detailModal').classList.remove('active');
     }
 
-    // Navegación con teclado
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         closeDetail();
